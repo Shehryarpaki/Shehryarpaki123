@@ -20,13 +20,24 @@ For a Pakistani number like `0300 1234567`, drop the leading `0` and prefix `92`
 
 The hero/footer/pre-order buttons and the WhatsApp handoff all use this one value.
 
-## 2. Other placeholders to replace
+## 2. Add the real H59 Max photo
+
+The product section currently shows a drop-in **illustration** of the band. To use a real photo:
+
+1. Save your photo next to `index.html` — name it `h59-max.jpg` (a square ~1000×1000 image on a dark or transparent background looks best).
+2. In `index.html`, find the comment `<!-- ===== PRODUCT PHOTO SLOT` in the product/pricing section.
+3. Uncomment the `<img ... src="h59-max.jpg" ...>` line and delete the `<svg>…</svg>` illustration below it (and the `<span class="media-note">` line).
+
+That's it — your photo replaces the placeholder. You can add more photos the same way.
+
+> Note: only **your own** product photos should go here. Don't use other brands' marketing images.
+
+## 3. Other placeholders to replace
 
 - **Instagram handle** — in the footer: `https://instagram.com/your_handle_here`.
-- **Product photos** — tasteful SVG/gradient placeholders are used for now; swap in real images when ready.
 - **OG image** — the `og:image` meta points to a placeholder URL; host a 1200×630 image and update it for nice social previews.
 
-## 3. Optional: also save orders to Formspree (disabled by default)
+## 4. Optional: also save orders to Formspree (disabled by default)
 
 Orders go straight to WhatsApp. If you also want a copy saved server-side,
 create a free [Formspree](https://formspree.io) form and set:
@@ -37,10 +48,11 @@ const FORMSPREE_ENDPOINT = "https://formspree.io/f/xxxxxxxx";
 
 Leave it as `""` to keep it off. It's fire-and-forget and never blocks the WhatsApp step.
 
-## 4. Deploy (Netlify Drop)
+## 5. Deploy (Netlify Drop)
 
 1. Go to <https://app.netlify.com/drop>.
 2. Drag the folder containing `index.html` (or just the file) onto the page.
-3. You get a live URL instantly. Optionally connect a custom domain in Site settings.
+3. Netlify will ask you to create a **free account** (click "Continue with GitHub/Google" to skip making a password). This is required to host the site.
+4. You get a live URL instantly. Optionally connect a custom domain in Site settings.
 
 That's it — no other steps needed.
