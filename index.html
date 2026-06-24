@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Strive Wearables — Train. Recover. Repeat. | Screenless Fitness Band</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Strive Wearables — Train. Track. Repeat. | Screenless Fitness Band</title>
 
 <!-- ============ SEO ============ -->
 <meta name="description" content="Strive Wearables — an affordable screenless fitness band. 24/7 heart rate, sleep tracking, steps, SpO₂, call & message alerts, up to 14-day battery, IP68 waterproof. Pre-order in Pakistan via WhatsApp." />
@@ -13,7 +13,7 @@
 
 <!-- ============ Open Graph ============ -->
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Strive Wearables — Train. Recover. Repeat." />
+<meta property="og:title" content="Strive Wearables — Train. Track. Repeat." />
 <meta property="og:description" content="A screenless fitness band. Data lives in the app. 24/7 heart rate, sleep, SpO₂, up to 14-day battery, IP68. Pre-order in Pakistan." />
 <meta property="og:site_name" content="Strive Wearables" />
 <meta property="og:locale" content="en_PK" />
@@ -21,7 +21,7 @@
 <!-- TODO: replace with a real hosted OG image (1200×630) -->
 <meta property="og:image" content="https://strivewearables.example/og-image.png" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Strive Wearables — Train. Recover. Repeat." />
+<meta name="twitter:title" content="Strive Wearables — Train. Track. Repeat." />
 <meta name="twitter:description" content="A screenless fitness band. 24/7 heart rate, sleep, SpO₂, up to 14-day battery, IP68. Pre-order in Pakistan." />
 
 <!-- ============ Favicon (generated from the logo pulse-arrow mark) ============ -->
@@ -50,7 +50,7 @@
 }
 
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth; scroll-padding-top:76px; -webkit-text-size-adjust:100%}
 @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} }
 
 body{
@@ -283,17 +283,55 @@ footer.site{background:var(--ink); color:#9fb3cf; padding:54px 0 34px}
 /* ---------- Responsive ---------- */
 @media (max-width:880px){
   .nav nav{display:none}
-  .hero-grid{grid-template-columns:1fr; gap:36px}
-  .glass{max-width:440px}
+  .hero-grid{grid-template-columns:1fr; gap:34px; text-align:center}
+  .hero .lead{margin-inline:auto}
+  .hero .cta-row,.hero .trust{justify-content:center}
+  .glass{max-width:440px; margin-inline:auto; width:100%}
   .fgrid{grid-template-columns:1fr 1fr}
-  .inside .stage,.how .stage{grid-template-columns:1fr; gap:26px}
+  .inside .stage,.how .stage{grid-template-columns:1fr; gap:26px; text-align:center}
+  .inside .callouts{text-align:left}
+  .how .steps{text-align:left; max-width:440px; margin-inline:auto}
   .pgrid{grid-template-columns:1fr; max-width:460px}
+  .sec-head{margin-inline:auto; text-align:center}
 }
-@media (max-width:560px){
-  .fgrid{grid-template-columns:1fr}
-  .stat-row{grid-template-columns:repeat(3,1fr)}
+/* Phones */
+@media (max-width:600px){
+  .wrap{padding:0 16px}
+  .section-pad{padding:clamp(48px,12vw,72px) 0}
+  .nav{height:60px}
+  .logo .mark{width:34px; height:34px}
+  .logo .word{font-size:1.05rem}
+  .nav-cta .btn{padding:11px 16px; font-size:.9rem}
+  .hero-grid{padding:44px 0 56px}
+  .hero h1{font-size:clamp(2.25rem,9vw,3rem)}
+  .hero .lead{font-size:1rem}
+  .hero .trust{gap:10px 16px; font-size:.8rem}
+  .glass{padding:20px; border-radius:20px}
+  .ring{width:108px; height:108px}
+  .ring-info .big{font-size:1.3rem}
+  .stat-row{gap:8px}
+  .stat{padding:10px}
+  .stat .v{font-size:1rem}
+  .marquee span{font-size:.92rem}
+  .fgrid{grid-template-columns:1fr; gap:14px}
+  .fcard{padding:22px}
+  .pcard{padding:24px}
+  .price{font-size:2rem}
   .row2{grid-template-columns:1fr}
-  .hero .cta-row .btn{flex:1; justify-content:center}
+  .timeline{padding-left:2px}
+  .tmoment{padding-left:54px}
+  .tl-line{left:19px}
+  .tmoment .dot{left:9px}
+  .modal{padding:0; align-items:flex-end}
+  .modal .panel{padding:24px 20px calc(24px + env(safe-area-inset-bottom)); border-radius:20px 20px 0 0; max-height:94vh; width:100%}
+  .modal .close{top:14px; right:14px}
+  .cta-row{width:100%}
+  .hero .cta-row .btn,.cta-band .btn{width:100%; justify-content:center}
+}
+/* Stack the hero summary stats on the very smallest screens */
+@media (max-width:360px){
+  .stat-row{grid-template-columns:1fr 1fr}
+  .stat-row .stat:last-child{grid-column:1 / -1}
 }
 
 /* ---------- Pinning disabled (mobile / reduced motion): degrade gracefully ---------- */
@@ -365,7 +403,7 @@ body.pin-off .inside .stage{margin-bottom:0}
   <div class="wrap hero-grid">
     <div>
       <span class="eyebrow">Launching in Pakistan</span>
-      <h1>Train. Recover. <span class="grad-text">Repeat.</span></h1>
+      <h1>Train. Track. <span class="grad-text">Repeat.</span></h1>
       <p class="lead">A screenless fitness band that gets out of your way. No display to distract you — your numbers live in the companion app, all day and night.</p>
       <div class="cta-row">
         <button class="btn btn-grad" data-open-modal data-model="Strive Max">Pre-order now</button>
@@ -660,7 +698,7 @@ body.pin-off .inside .stage{margin-bottom:0}
       </div>
     </div>
     <div class="legal">
-      <span>© <span id="year">2026</span> Strive Wearables. Train. Recover. Repeat.</span>
+      <span>© <span id="year">2026</span> Strive Wearables. Train. Track. Repeat.</span>
       <span>Made in Pakistan 🇵🇰</span>
     </div>
     <p class="note">Strive is a screenless fitness band; all data is shown in the companion app. It tracks heart rate, sleep, activity and SpO₂ (Max) for general wellness and is not a medical device.</p>
