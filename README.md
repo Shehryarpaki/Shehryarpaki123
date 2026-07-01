@@ -20,15 +20,18 @@ For a Pakistani number like `0300 1234567`, drop the leading `0` and prefix `92`
 
 The hero/footer/pre-order buttons and the WhatsApp handoff all use this one value.
 
-## 2. Add the real H59 Max photo
+## 2. Add the real product photos (two colours)
 
-The product section currently shows a drop-in **illustration** of the band. To use a real photo:
+The product section has **two colour variants — Black and Cream** — each showing a drop-in **illustration** until you add real photos.
 
-1. Save your photo next to `index.html` — name it `h59-max.jpg` (a square ~1000×1000 image on a dark or transparent background looks best).
-2. In `index.html`, find the comment `<!-- ===== PRODUCT PHOTO SLOT` in the product/pricing section.
-3. Uncomment the `<img ... src="h59-max.jpg" ...>` line and delete the `<svg>…</svg>` illustration below it (and the `<span class="media-note">` line).
+1. Save your two photos next to `index.html`, named exactly:
+   - `band-black.jpg`
+   - `band-cream.jpg`
+   (Square ~1000×1000 on a dark background looks best.)
+2. In `index.html`, find the comment `<!-- ===== PRODUCT PHOTO SLOTS` in the product section.
+3. In each `.variant` block, **uncomment** the `<img ... >` line and **delete** the `<svg>…</svg>` illustration right below it.
 
-That's it — your photo replaces the placeholder. You can add more photos the same way.
+The colour switch on the page (and in the pre-order form) already toggles between the two — so once both photos are in, clicking Black/Cream swaps the real images.
 
 > Note: only **your own** product photos should go here. Don't use other brands' marketing images.
 

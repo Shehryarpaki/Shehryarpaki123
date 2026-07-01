@@ -6,7 +6,7 @@
 <title>Strive H59 Max — Train. Track. Repeat. | Screenless Fitness Band</title>
 
 <!-- ============ SEO ============ -->
-<meta name="description" content="Strive H59 Max — an affordable screenless fitness band. 24/7 heart rate, sleep tracking, steps, SpO₂, call & message alerts, up to 14-day battery, IP68 waterproof. PKR 16,000. Pre-order in Pakistan via WhatsApp." />
+<meta name="description" content="Strive H59 Max — an affordable screenless fitness band. 24/7 heart rate, sleep tracking, steps, SpO₂, call & message alerts, up to 14-day battery, IP68 waterproof. PKR 14,000. Pre-order in Pakistan via WhatsApp." />
 <meta name="theme-color" content="#0B1220" />
 <meta name="keywords" content="Strive Wearables, fitness band Pakistan, screenless band, heart rate, SpO2, sleep tracking, IP68, pre-order" />
 <link rel="canonical" href="https://strivewearables.example/" />
@@ -22,7 +22,7 @@
 <meta property="og:image" content="https://strivewearables.example/og-image.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Strive H59 Max — Train. Track. Repeat." />
-<meta name="twitter:description" content="A screenless fitness band. 24/7 heart rate, sleep, SpO₂, up to 14-day battery, IP68. PKR 16,000. Pre-order in Pakistan." />
+<meta name="twitter:description" content="A screenless fitness band. 24/7 heart rate, sleep, SpO₂, up to 14-day battery, IP68. PKR 14,000. Pre-order in Pakistan." />
 
 <!-- ============ Favicon (generated from the logo pulse-arrow mark) ============ -->
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='1' x2='1' y2='0'%3E%3Cstop offset='0' stop-color='%231D4ED8'/%3E%3Cstop offset='0.5' stop-color='%2306B6D4'/%3E%3Cstop offset='1' stop-color='%2322C55E'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='8' fill='%230B1220'/%3E%3Cpath d='M4 20 L11 20 L13 14 L16 25 L19 9 L21 16 L23 16 L26 8' fill='none' stroke='url(%23g)' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M22 12 L26 8 L26 13' fill='none' stroke='url(%23g)' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
@@ -245,6 +245,14 @@ header.site{
 .badge2{align-self:flex-start; background:var(--grad); color:#06281a; font-family:'JetBrains Mono'; font-weight:700;
   font-size:.64rem; letter-spacing:.14em; text-transform:uppercase; padding:6px 13px; border-radius:999px; margin-bottom:12px}
 .showcase-body h3{font-size:1.9rem}
+.variant{display:none; width:100%}
+.variant.on{display:grid; place-items:center}
+.variant img{width:100%; height:auto; object-fit:contain}
+.swatches{display:flex; gap:10px; margin:16px 0 20px}
+.swatch{display:flex; align-items:center; gap:8px; padding:8px 14px; border-radius:999px; cursor:pointer;
+  background:rgba(255,255,255,.05); border:1px solid var(--line); color:#cbd5e1; font:inherit; font-size:.9rem; font-weight:600}
+.swatch span{width:16px; height:16px; border-radius:50%; background:var(--sw); border:1px solid rgba(255,255,255,.35); flex:none}
+.swatch.on{border-color:var(--cyan); color:#fff; background:rgba(34,211,238,.12)}
 @media (max-width:880px){ .showcase{grid-template-columns:1fr; text-align:center} .showcase .plist{text-align:left; max-width:360px; margin-inline:auto} .badge2{align-self:center} }
 @media (max-width:600px){ .showcase{padding:18px} .showcase-media{min-height:230px} }
 
@@ -616,56 +624,60 @@ body.pin-off .inside .stage{margin-bottom:0}
 <section class="models section-pad" id="models">
   <div class="wrap">
     <div class="sec-head reveal" style="text-align:center;margin-inline:auto">
-      <span class="eyebrow">Now launching</span>
+      <span class="eyebrow">Now launching · two colours</span>
       <h2 style="color:#fff">Meet the Strive H59 Max</h2>
-      <p style="color:#9fb3cf">One screenless band that does it all — paired with the free companion app.</p>
+      <p style="color:#9fb3cf">A screenless woven-loop band that does it all — in Black or Cream, paired with the free companion app.</p>
     </div>
 
     <div class="showcase reveal">
-      <!-- ===== PRODUCT PHOTO SLOT =====================================================
-           To use a real H59 Max photo: save it next to index.html (e.g. "h59-max.jpg",
-           ideally a square ~1000×1000 image on a dark/transparent background) and replace
-           the <img> src below with  src="h59-max.jpg". Delete the inline SVG illustration.
-           A drop-in illustration is shown until you add your own photo.
+      <!-- ===== PRODUCT PHOTO SLOTS ===================================================
+           TWO colour variants. To use real photos, save them next to index.html as
+           "band-black.jpg" and "band-cream.jpg" (square ~1000×1000 on a dark background
+           looks best), then in each ".variant" below UNCOMMENT the <img> line and DELETE
+           the <svg> illustration under it. Drop-in illustrations show until you add photos.
       ============================================================================ -->
-      <div class="showcase-media">
-        <!-- <img src="h59-max.jpg" alt="Strive H59 Max screenless fitness band" width="520" height="520" /> -->
-        <svg viewBox="0 0 360 360" role="img" aria-label="Illustration of the Strive H59 Max screenless band" width="520" height="520">
-          <defs>
-            <linearGradient id="pbg" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0" stop-color="#1D4ED8"/><stop offset=".5" stop-color="#06B6D4"/><stop offset="1" stop-color="#22C55E"/>
-            </linearGradient>
-            <linearGradient id="pstrap" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#22324d"/><stop offset="1" stop-color="#0e1830"/>
-            </linearGradient>
-            <radialGradient id="pface" cx="38%" cy="32%" r="80%">
-              <stop offset="0" stop-color="#1b2942"/><stop offset="1" stop-color="#0a1120"/>
-            </radialGradient>
-          </defs>
-          <!-- soft shadow -->
-          <ellipse cx="180" cy="322" rx="92" ry="16" fill="rgba(0,0,0,.35)"/>
-          <!-- sport strap (top + bottom, slight taper) -->
-          <path d="M138 24 q42 -10 84 0 l-8 120 q-34 -8 -68 0 z" fill="url(#pstrap)"/>
-          <path d="M130 214 q50 8 100 0 l-8 122 q-42 10 -84 0 z" fill="url(#pstrap)"/>
-          <!-- strap stitch hint -->
-          <path d="M150 40 l60 0 M150 200 l60 0" stroke="rgba(148,163,184,.25)" stroke-width="2" stroke-dasharray="3 6"/>
-          <!-- pebble module (oval, screenless) -->
-          <rect x="96" y="120" width="168" height="120" rx="56" fill="#0b1220" stroke="url(#pbg)" stroke-width="3"/>
-          <rect x="108" y="132" width="144" height="96" rx="46" fill="url(#pface)"/>
-          <!-- subtle brand pulse mark embossed on the matte face (no display) -->
-          <path d="M138 182 h20 l8 -18 l11 34 l9 -46 l7 22 h20" fill="none" stroke="url(#pbg)" stroke-width="3"
-                stroke-linecap="round" stroke-linejoin="round" opacity=".75"/>
-          <!-- side button -->
-          <rect x="262" y="168" width="6" height="26" rx="3" fill="url(#pbg)"/>
-        </svg>
-        <span class="media-note">Placeholder — drop in your real H59 Max photo</span>
+      <div class="showcase-media" id="media">
+        <!-- shared loop shape + woven textures -->
+        <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+          <path id="loopPath" fill-rule="evenodd" d="M180 38 C252 38 302 100 302 180 C302 262 252 322 180 322 C108 322 58 262 58 180 C58 100 108 38 180 38 Z M180 96 C138 96 112 136 112 180 C112 226 138 264 180 264 C222 264 248 226 248 180 C248 136 222 96 180 96 Z"/>
+          <pattern id="weaveB" width="10" height="6" patternUnits="userSpaceOnUse">
+            <rect width="10" height="6" fill="#1b1b1d"/><path d="M0 3h10" stroke="#000" stroke-width="1" opacity=".55"/><path d="M0 0h10M0 6h10" stroke="#333" stroke-width=".5" opacity=".6"/>
+          </pattern>
+          <pattern id="weaveC" width="10" height="6" patternUnits="userSpaceOnUse">
+            <rect width="10" height="6" fill="#ece4d7"/><path d="M0 3h10" stroke="#cbbfa6" stroke-width="1" opacity=".7"/><path d="M0 0h10M0 6h10" stroke="#fff" stroke-width=".5" opacity=".5"/>
+          </pattern>
+        </defs></svg>
+
+        <!-- BLACK -->
+        <div class="variant on" data-variant="Black">
+          <!-- <img src="band-black.jpg" alt="Strive H59 Max in Black" width="520" height="520" /> -->
+          <svg viewBox="0 0 360 360" width="520" height="520" role="img" aria-label="Strive H59 Max screenless band in Black">
+            <ellipse cx="180" cy="332" rx="96" ry="14" fill="rgba(0,0,0,.4)"/>
+            <use href="#loopPath" fill="url(#weaveB)" stroke="#000" stroke-width="1.5"/>
+            <rect x="162" y="44" width="36" height="16" rx="4" fill="#3a3a3c"/>
+          </svg>
+        </div>
+        <!-- CREAM -->
+        <div class="variant" data-variant="Cream">
+          <!-- <img src="band-cream.jpg" alt="Strive H59 Max in Cream" width="520" height="520" /> -->
+          <svg viewBox="0 0 360 360" width="520" height="520" role="img" aria-label="Strive H59 Max screenless band in Cream">
+            <ellipse cx="180" cy="332" rx="96" ry="14" fill="rgba(0,0,0,.28)"/>
+            <use href="#loopPath" fill="url(#weaveC)" stroke="#cdbfa6" stroke-width="1.2"/>
+            <rect x="162" y="44" width="36" height="16" rx="4" fill="#c9a24a"/>
+          </svg>
+        </div>
+        <span class="media-note">Placeholder — drop in band-black.jpg / band-cream.jpg</span>
       </div>
 
       <div class="showcase-body">
         <span class="badge2">Launch edition</span>
         <h3>Strive H59 Max</h3>
-        <div class="tag">The screenless band — everything in one</div>
-        <div class="price">PKR 16,000 <small>· free delivery</small></div>
+        <div class="tag">The screenless woven-loop band — everything in one</div>
+        <div class="price">PKR 14,000 <small>· free delivery</small></div>
+        <div class="swatches" role="group" aria-label="Choose colour">
+          <button type="button" class="swatch on" data-color="Black" style="--sw:#1a1a1a" aria-pressed="true"><span></span>Black</button>
+          <button type="button" class="swatch" data-color="Cream" style="--sw:#e9e1d4" aria-pressed="false"><span></span>Cream</button>
+        </div>
         <ul class="plist">
           <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22D3EE" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> 24/7 heart rate</li>
           <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22D3EE" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Sleep tracking (hours, light/deep)</li>
@@ -673,7 +685,7 @@ body.pin-off .inside .stage{margin-bottom:0}
           <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22D3EE" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Blood oxygen (SpO₂)</li>
           <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22D3EE" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Multiple sport modes</li>
           <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22D3EE" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Call &amp; message alerts</li>
-          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22D3EE" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Up to 14-day battery &amp; premium strap</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22D3EE" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Up to 14-day battery &amp; premium woven band</li>
           <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22D3EE" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> IP68 waterproof · Bluetooth + app</li>
         </ul>
         <button class="btn btn-grad" data-open-modal>Pre-order H59 Max</button>
@@ -758,6 +770,7 @@ body.pin-off .inside .stage{margin-bottom:0}
     <h2 id="modalTitle">Pre-order the H59 Max</h2>
     <p class="msub">Fill this in and we'll open WhatsApp with your order ready to send.</p>
     <form id="preorderForm" novalidate>
+      <input type="hidden" id="model" value="Strive H59 Max" />
       <div class="field" id="f-name">
         <label for="name">Full name</label>
         <input id="name" name="name" type="text" autocomplete="name" placeholder="e.g. Ali Khan" required />
@@ -774,9 +787,10 @@ body.pin-off .inside .stage{margin-bottom:0}
           <input id="city" name="city" type="text" autocomplete="address-level2" placeholder="e.g. Lahore" />
         </div>
         <div class="field">
-          <label for="model">Model</label>
-          <select id="model" name="model">
-            <option value="Strive H59 Max" selected>Strive H59 Max — PKR 16,000</option>
+          <label for="color">Colour</label>
+          <select id="color" name="color">
+            <option value="Black">Black</option>
+            <option value="Cream">Cream</option>
           </select>
         </div>
       </div>
@@ -947,9 +961,10 @@ const modal = document.getElementById('modal');
 const form = document.getElementById('preorderForm');
 let lastFocused = null;
 
-function openModal(model){
+function openModal(){
   lastFocused = document.activeElement;
-  if (model){ document.getElementById('model').value = model; }
+  var colorSel = document.getElementById('color');
+  if (colorSel) colorSel.value = selectedColor; // carry the chosen colour into the form
   modal.classList.add('open');
   modal.setAttribute('aria-hidden','false');
   document.body.style.overflow = 'hidden';
@@ -976,10 +991,22 @@ function onKeydown(e){
 }
 
 document.querySelectorAll('[data-open-modal]').forEach(btn=>{
-  btn.addEventListener('click', ()=> openModal(btn.dataset.model));
+  btn.addEventListener('click', ()=> openModal());
 });
 document.querySelectorAll('[data-close-modal]').forEach(el=>{
   el.addEventListener('click', closeModal);
+});
+
+/* ---------- Colour swatch selector (Black / Cream) ---------- */
+let selectedColor = 'Black';
+const variants = document.querySelectorAll('.variant');
+document.querySelectorAll('.swatch').forEach(sw=>{
+  sw.addEventListener('click', ()=>{
+    selectedColor = sw.dataset.color;
+    document.querySelectorAll('.swatch').forEach(s=>{ s.classList.remove('on'); s.setAttribute('aria-pressed','false'); });
+    sw.classList.add('on'); sw.setAttribute('aria-pressed','true');
+    variants.forEach(v=> v.classList.toggle('on', v.dataset.variant === selectedColor));
+  });
 });
 
 /* ---------- Validation + WhatsApp handoff ---------- */
@@ -1003,6 +1030,7 @@ form.addEventListener('submit', function(e){
     phone: phoneRaw,
     city: document.getElementById('city').value.trim() || '—',
     model: document.getElementById('model').value,
+    color: document.getElementById('color').value,
     qty: document.getElementById('qty').value,
     payment: document.getElementById('payment').value
   };
@@ -1015,6 +1043,7 @@ form.addEventListener('submit', function(e){
     "WhatsApp: " + order.phone,
     "City: " + order.city,
     "Model: " + order.model,
+    "Colour: " + order.color,
     "Quantity: " + order.qty,
     "Payment: " + order.payment,
     "",
