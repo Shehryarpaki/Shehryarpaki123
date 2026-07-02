@@ -20,18 +20,16 @@ For a Pakistani number like `0300 1234567`, drop the leading `0` and prefix `92`
 
 The hero/footer/pre-order buttons and the WhatsApp handoff all use this one value.
 
-## 2. Add the real product photos (two colours)
+## 2. Product photos (two colours)
 
-The product section has **two colour variants — Black and Cream** — each showing a drop-in **illustration** until you add real photos.
+The product section uses two **image files** that already ship with the site:
 
-1. Save your two photos next to `index.html`, named exactly:
-   - `band-black.jpg`
-   - `band-cream.jpg`
-   (Square ~1000×1000 on a dark background looks best.)
-2. In `index.html`, find the comment `<!-- ===== PRODUCT PHOTO SLOTS` in the product section.
-3. In each `.variant` block, **uncomment** the `<img ... >` line and **delete** the `<svg>…</svg>` illustration right below it.
+- `band-black.png`
+- `band-cream.png`
 
-The colour switch on the page (and in the pre-order form) already toggles between the two — so once both photos are in, clicking Black/Cream swaps the real images.
+To use your **own** photos, just replace those two files — **keep the same file names** and it works instantly (a square ~1000×1000 image on a dark background looks best). No HTML edits needed.
+
+The Black/Cream switch on the page (and in the pre-order form) toggles between the two images automatically.
 
 > Note: only **your own** product photos should go here. Don't use other brands' marketing images.
 

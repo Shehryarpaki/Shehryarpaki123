@@ -637,51 +637,15 @@ body.pin-off .inside .stage{margin-bottom:0}
            the <svg> illustration under it. Drop-in illustrations show until you add photos.
       ============================================================================ -->
       <div class="showcase-media" id="media">
-        <!-- BLACK colourway -->
+        <!-- These are real image files (band-black.png / band-cream.png). To use your own
+             product photos later, just replace those two files (keep the same names). -->
         <div class="variant on" data-variant="Black">
-          <!-- To use a real photo: uncomment and set src="band-black.jpg", then delete the <svg>. -->
-          <!-- <img src="band-black.jpg" alt="Strive Power in Black" width="520" height="520" /> -->
-          <svg viewBox="0 0 400 380" width="520" height="520" role="img" aria-label="Strive Power screenless woven-loop band in Black">
-            <defs>
-              <mask id="ringB"><ellipse cx="200" cy="196" rx="154" ry="150" fill="#fff"/><ellipse cx="200" cy="196" rx="92" ry="88" fill="#000"/></mask>
-            </defs>
-            <ellipse cx="200" cy="356" rx="122" ry="15" fill="rgba(0,0,0,.5)"/>
-            <!-- inner back wall seen through the loop -->
-            <path d="M110 210 Q200 300 290 210 Q200 262 110 210 Z" fill="#141416"/>
-            <g mask="url(#ringB)">
-              <rect x="40" y="40" width="320" height="320" fill="#26262a"/>
-              <g fill="none" stroke="#3a3a41" stroke-width="2" opacity=".85">
-                <ellipse cx="200" cy="196" rx="98" ry="94"/><ellipse cx="200" cy="196" rx="106" ry="102"/><ellipse cx="200" cy="196" rx="114" ry="110"/><ellipse cx="200" cy="196" rx="122" ry="118"/><ellipse cx="200" cy="196" rx="130" ry="126"/><ellipse cx="200" cy="196" rx="138" ry="134"/><ellipse cx="200" cy="196" rx="146" ry="142"/>
-              </g>
-              <ellipse cx="150" cy="120" rx="130" ry="66" fill="rgba(255,255,255,.06)"/>
-            </g>
-            <ellipse cx="200" cy="196" rx="154" ry="150" fill="none" stroke="rgba(0,0,0,.55)" stroke-width="1.5"/>
-            <!-- clasp -->
-            <g><rect x="182" y="48" width="36" height="20" rx="5" fill="#45454b"/><rect x="188" y="52" width="24" height="3" rx="1.5" fill="rgba(255,255,255,.35)"/></g>
-          </svg>
+          <img src="band-black.png" alt="Strive Power screenless woven-loop band in Black" width="520" height="520" />
         </div>
-        <!-- CREAM colourway -->
         <div class="variant" data-variant="Cream">
-          <!-- <img src="band-cream.jpg" alt="Strive Power in Cream" width="520" height="520" /> -->
-          <svg viewBox="0 0 400 380" width="520" height="520" role="img" aria-label="Strive Power screenless woven-loop band in Cream">
-            <defs>
-              <mask id="ringC"><ellipse cx="200" cy="196" rx="154" ry="150" fill="#fff"/><ellipse cx="200" cy="196" rx="92" ry="88" fill="#000"/></mask>
-            </defs>
-            <ellipse cx="200" cy="356" rx="122" ry="15" fill="rgba(0,0,0,.4)"/>
-            <path d="M110 210 Q200 300 290 210 Q200 262 110 210 Z" fill="#d6cab5"/>
-            <g mask="url(#ringC)">
-              <rect x="40" y="40" width="320" height="320" fill="#ece5d9"/>
-              <g fill="none" stroke="#d0c3ad" stroke-width="2" opacity=".9">
-                <ellipse cx="200" cy="196" rx="98" ry="94"/><ellipse cx="200" cy="196" rx="106" ry="102"/><ellipse cx="200" cy="196" rx="114" ry="110"/><ellipse cx="200" cy="196" rx="122" ry="118"/><ellipse cx="200" cy="196" rx="130" ry="126"/><ellipse cx="200" cy="196" rx="138" ry="134"/><ellipse cx="200" cy="196" rx="146" ry="142"/>
-              </g>
-              <ellipse cx="150" cy="120" rx="130" ry="66" fill="rgba(255,255,255,.28)"/>
-            </g>
-            <ellipse cx="200" cy="196" rx="154" ry="150" fill="none" stroke="rgba(120,105,80,.4)" stroke-width="1.5"/>
-            <!-- gold clasp -->
-            <g><rect x="182" y="48" width="36" height="20" rx="5" fill="#c9a24a"/><rect x="188" y="52" width="24" height="3" rx="1.5" fill="rgba(255,255,255,.55)"/></g>
-          </svg>
+          <img src="band-cream.png" alt="Strive Power screenless woven-loop band in Cream" width="520" height="520" />
         </div>
-        <span class="media-note">Illustration of the two colourways — swap in real photos anytime</span>
+        <span class="media-note">Strive Power — Black &amp; Cream</span>
       </div>
 
       <div class="showcase-body">
@@ -734,9 +698,6 @@ body.pin-off .inside .stage{margin-bottom:0}
     <p>Reserve yours on WhatsApp in under a minute. Free delivery across Pakistan on every pre-order.</p>
     <div class="chips" aria-label="Accepted payment methods">
       <span class="chip">💵 Cash on Delivery</span>
-      <span class="chip">📱 JazzCash</span>
-      <span class="chip">📲 Easypaisa</span>
-      <span class="chip">💳 Debit / Credit Card</span>
     </div>
     <button class="btn btn-dark" data-open-modal>Start pre-order</button>
   </div>
@@ -820,9 +781,6 @@ body.pin-off .inside .stage{margin-bottom:0}
           <label for="payment">Payment method</label>
           <select id="payment" name="payment">
             <option>Cash on Delivery</option>
-            <option>JazzCash</option>
-            <option>Easypaisa</option>
-            <option>Debit / Credit Card</option>
           </select>
         </div>
       </div>
