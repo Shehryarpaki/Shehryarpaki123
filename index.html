@@ -626,26 +626,26 @@ body.pin-off .inside .stage{margin-bottom:0}
     <div class="sec-head reveal" style="text-align:center;margin-inline:auto">
       <span class="eyebrow">Now launching · two colours</span>
       <h2 style="color:#fff">Meet the Strive Power</h2>
-      <p style="color:#9fb3cf">A screenless woven-loop band that does it all — in Black or Cream, paired with the free companion app.</p>
+      <p style="color:#9fb3cf">A screenless woven-loop band that does it all — in Black or Pink, paired with the free companion app.</p>
     </div>
 
     <div class="showcase reveal">
       <!-- ===== PRODUCT PHOTO SLOTS ===================================================
            TWO colour variants. To use real photos, save them next to index.html as
-           "band-black.jpg" and "band-cream.jpg" (square ~1000×1000 on a dark background
+           "band-black.jpg" and "band-pink.jpg" (square ~1000×1000 on a dark background
            looks best), then in each ".variant" below UNCOMMENT the <img> line and DELETE
            the <svg> illustration under it. Drop-in illustrations show until you add photos.
       ============================================================================ -->
       <div class="showcase-media" id="media">
-        <!-- These are real image files (band-black.png / band-cream.png). To use your own
+        <!-- These are real image files (band-black.png / band-pink.png). To use your own
              product photos later, just replace those two files (keep the same names). -->
         <div class="variant on" data-variant="Black">
           <img src="band-black.png" alt="Strive Power screenless woven-loop band in Black" width="520" height="520" />
         </div>
-        <div class="variant" data-variant="Cream">
-          <img src="band-cream.png" alt="Strive Power screenless woven-loop band in Cream" width="520" height="520" />
+        <div class="variant" data-variant="Pink">
+          <img src="band-pink.png" alt="Strive Power screenless woven-loop band in Pink" width="520" height="520" />
         </div>
-        <span class="media-note">Strive Power — Black &amp; Cream</span>
+        <span class="media-note">Strive Power — Black &amp; Pink</span>
       </div>
 
       <div class="showcase-body">
@@ -655,7 +655,7 @@ body.pin-off .inside .stage{margin-bottom:0}
         <div class="price">PKR 14,000 <small>· free delivery</small></div>
         <div class="swatches" role="group" aria-label="Choose colour">
           <button type="button" class="swatch on" data-color="Black" style="--sw:#1a1a1a" aria-pressed="true"><span></span>Black</button>
-          <button type="button" class="swatch" data-color="Cream" style="--sw:#e9e1d4" aria-pressed="false"><span></span>Cream</button>
+          <button type="button" class="swatch" data-color="Pink" style="--sw:#e79ab3" aria-pressed="false"><span></span>Pink</button>
         </div>
         <ul class="plist">
           <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22D3EE" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> 24/7 heart rate</li>
@@ -738,6 +738,14 @@ body.pin-off .inside .stage{margin-bottom:0}
   </div>
 </footer>
 
+<!-- Hidden form so Netlify detects "preorder" and can email you each order.
+     Works automatically once the site is hosted on Netlify (see README). -->
+<form name="preorder" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input type="text" name="name" /><input type="tel" name="phone" /><input type="text" name="city" />
+  <input type="text" name="model" /><input type="text" name="color" /><input type="text" name="qty" />
+  <input type="text" name="payment" /><input type="text" name="bot-field" />
+</form>
+
 <!-- ===================== PRE-ORDER MODAL ===================== -->
 <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
   <div class="backdrop" data-close-modal></div>
@@ -766,7 +774,7 @@ body.pin-off .inside .stage{margin-bottom:0}
           <label for="color">Colour</label>
           <select id="color" name="color">
             <option value="Black">Black</option>
-            <option value="Cream">Cream</option>
+            <option value="Pink">Pink</option>
           </select>
         </div>
       </div>
@@ -801,7 +809,7 @@ body.pin-off .inside .stage{margin-bottom:0}
 /* >>> SET THIS: your WhatsApp business number in international format,
        digits only, no "+", no spaces. Example for Pakistan 0300 1234567
        => country code 92 + 3001234567 = "923001234567". <<< */
-const PHONE = "923000000000"; // TODO: replace with the real number
+const PHONE = "923210077442"; // TODO: replace with the real number
 
 /* OPTIONAL: also POST each order to a Formspree (or similar) endpoint as a backup.
    Leave as "" to keep it DISABLED (default). To enable, paste your endpoint, e.g.
@@ -970,7 +978,7 @@ document.querySelectorAll('[data-close-modal]').forEach(el=>{
   el.addEventListener('click', closeModal);
 });
 
-/* ---------- Colour swatch selector (Black / Cream) ---------- */
+/* ---------- Colour swatch selector (Black / Pink) ---------- */
 let selectedColor = 'Black';
 const variants = document.querySelectorAll('.variant');
 document.querySelectorAll('.swatch').forEach(sw=>{
@@ -1025,7 +1033,15 @@ form.addEventListener('submit', function(e){
   const text = encodeURIComponent(lines.join("\n"));
   const waURL = "https://wa.me/" + PHONE + "?text=" + text;
 
-  /* OPTIONAL backup POST to Formspree — runs only if endpoint is set */
+  /* EMAIL SYSTEM — send the order to Netlify Forms so you get an email + a
+     submissions list in the Netlify dashboard. Runs only on the live Netlify
+     site (harmless locally). Turn on the email in Netlify: Forms → Notifications. */
+  try {
+    const enc = new URLSearchParams({ "form-name": "preorder", ...order }).toString();
+    fetch("/", { method: "POST", headers: {"Content-Type":"application/x-www-form-urlencoded"}, body: enc }).catch(()=>{});
+  } catch(_){}
+
+  /* OPTIONAL alternative: also POST to Formspree if an endpoint is set (works on any host) */
   if (FORMSPREE_ENDPOINT){
     try {
       fetch(FORMSPREE_ENDPOINT, {
