@@ -624,28 +624,18 @@ body.pin-off .inside .stage{margin-bottom:0}
 <section class="models section-pad" id="models">
   <div class="wrap">
     <div class="sec-head reveal" style="text-align:center;margin-inline:auto">
-      <span class="eyebrow">Now launching · two colours</span>
+      <span class="eyebrow">Now launching</span>
       <h2 style="color:#fff">Meet the Strive Power</h2>
-      <p style="color:#9fb3cf">A screenless woven-loop band that does it all — in Black or Pink, paired with the free companion app.</p>
+      <p style="color:#9fb3cf">A screenless woven-loop band that does it all — paired with the free companion app.</p>
     </div>
 
     <div class="showcase reveal">
-      <!-- ===== PRODUCT PHOTO SLOTS ===================================================
-           TWO colour variants. To use real photos, save them next to index.html as
-           "band-black.jpg" and "band-pink.jpg" (square ~1000×1000 on a dark background
-           looks best), then in each ".variant" below UNCOMMENT the <img> line and DELETE
-           the <svg> illustration under it. Drop-in illustrations show until you add photos.
-      ============================================================================ -->
+      <!-- Product image. To use your own photo later, just replace band-black.png (keep the name). -->
       <div class="showcase-media" id="media">
-        <!-- These are real image files (band-black.png / band-pink.png). To use your own
-             product photos later, just replace those two files (keep the same names). -->
         <div class="variant on" data-variant="Black">
-          <img src="band-black.png" alt="Strive Power screenless woven-loop band in Black" width="520" height="520" />
+          <img src="band-black.png" alt="Strive Power screenless woven-loop band" width="520" height="520" />
         </div>
-        <div class="variant" data-variant="Pink">
-          <img src="band-pink.png" alt="Strive Power screenless woven-loop band in Pink" width="520" height="520" />
-        </div>
-        <span class="media-note">Strive Power — Black &amp; Pink</span>
+        <span class="media-note">Strive Power</span>
       </div>
 
       <div class="showcase-body">
@@ -653,10 +643,6 @@ body.pin-off .inside .stage{margin-bottom:0}
         <h3>Strive Power</h3>
         <div class="tag">The screenless woven-loop band — everything in one</div>
         <div class="price">PKR 14,000 <small>· free delivery</small></div>
-        <div class="swatches" role="group" aria-label="Choose colour">
-          <button type="button" class="swatch on" data-color="Black" style="--sw:#1a1a1a" aria-pressed="true"><span></span>Black</button>
-          <button type="button" class="swatch" data-color="Pink" style="--sw:#e79ab3" aria-pressed="false"><span></span>Pink</button>
-        </div>
         <ul class="plist">
           <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22D3EE" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> 24/7 heart rate</li>
           <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22D3EE" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Sleep tracking (hours, light/deep)</li>
@@ -765,19 +751,11 @@ body.pin-off .inside .stage{margin-bottom:0}
         <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="e.g. 0300 1234567" required />
         <div class="err">Please enter a valid phone number (at least 10 digits).</div>
       </div>
-      <div class="row2">
-        <div class="field">
-          <label for="city">City</label>
-          <input id="city" name="city" type="text" autocomplete="address-level2" placeholder="e.g. Lahore" />
-        </div>
-        <div class="field">
-          <label for="color">Colour</label>
-          <select id="color" name="color">
-            <option value="Black">Black</option>
-            <option value="Pink">Pink</option>
-          </select>
-        </div>
+      <div class="field">
+        <label for="city">City</label>
+        <input id="city" name="city" type="text" autocomplete="address-level2" placeholder="e.g. Lahore" />
       </div>
+      <input type="hidden" id="color" value="Black" />
       <div class="row2">
         <div class="field">
           <label for="qty">Quantity</label>
@@ -944,8 +922,6 @@ let lastFocused = null;
 
 function openModal(){
   lastFocused = document.activeElement;
-  var colorSel = document.getElementById('color');
-  if (colorSel) colorSel.value = selectedColor; // carry the chosen colour into the form
   modal.classList.add('open');
   modal.setAttribute('aria-hidden','false');
   document.body.style.overflow = 'hidden';
@@ -976,18 +952,6 @@ document.querySelectorAll('[data-open-modal]').forEach(btn=>{
 });
 document.querySelectorAll('[data-close-modal]').forEach(el=>{
   el.addEventListener('click', closeModal);
-});
-
-/* ---------- Colour swatch selector (Black / Pink) ---------- */
-let selectedColor = 'Black';
-const variants = document.querySelectorAll('.variant');
-document.querySelectorAll('.swatch').forEach(sw=>{
-  sw.addEventListener('click', ()=>{
-    selectedColor = sw.dataset.color;
-    document.querySelectorAll('.swatch').forEach(s=>{ s.classList.remove('on'); s.setAttribute('aria-pressed','false'); });
-    sw.classList.add('on'); sw.setAttribute('aria-pressed','true');
-    variants.forEach(v=> v.classList.toggle('on', v.dataset.variant === selectedColor));
-  });
 });
 
 /* ---------- Validation + WhatsApp handoff ---------- */

@@ -20,16 +20,11 @@ For a Pakistani number like `0300 1234567`, drop the leading `0` and prefix `92`
 
 The hero/footer/pre-order buttons and the WhatsApp handoff all use this one value.
 
-## 2. Product photos (two colours)
+## 2. Product photo
 
-The product section uses two **image files** that already ship with the site:
+The product section uses one **image file** that ships with the site: `band-black.png`.
 
-- `band-black.png`
-- `band-pink.png`
-
-To use your **own** photos, just replace those two files — **keep the same file names** and it works instantly (a square ~1000×1000 image on a dark background looks best). No HTML edits needed.
-
-The Black/Pink switch on the page (and in the pre-order form) toggles between the two images automatically.
+To use your **own** photo, just replace that file — **keep the same file name** (`band-black.png`) and it works instantly (a square ~1000×1000 image on a dark background looks best). No HTML edits needed.
 
 > Note: only **your own** product photos should go here. Don't use other brands' marketing images.
 
