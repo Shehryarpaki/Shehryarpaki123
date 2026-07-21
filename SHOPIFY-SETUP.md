@@ -14,15 +14,22 @@ Now the public sees a coming-soon page; you can still preview everything.
 3. Set status to **Draft** (or Active — it stays hidden while the store password is on).
 4. Later you'll copy this product's **Variant ID** (see step E).
 
-## C. Put the landing page in
-1. **Settings → Files** → upload `band-black.png` → click **Copy link**.
-2. Open `shopify-custom-liquid.html`, find `src="band-black.png"`, replace it with that link.
-3. **Online Store → Themes → Customize**.
-4. Pick the page (Home is fine) → **Add section → Custom Liquid**.
-5. Paste the **entire** file into the box → **Save**.
+## C. Put the landing page in (two paste blocks)
 
-Dawn's own header/footer are auto-hidden by the code, so it looks like the standalone site.
-(If you want Dawn's menu/footer back, delete the first `<style>…</style>` block in the file.)
+Shopify limits each Custom Liquid section to 50 KB, so the page comes in **two files** —
+`shopify-paste-1.html` and `shopify-paste-2.html`. You add **two** Custom Liquid sections,
+one after the other.
+
+1. **Settings → Files** → upload `band-black.png` → click **Copy link**.
+2. Open `shopify-paste-1.html`, find `src="band-black.png"`, replace it with that link.
+3. **Online Store → Themes → Customize** → pick the page (Home is fine).
+4. **Add section → Custom Liquid** → paste **all of `shopify-paste-1.html`** → Save.
+5. **Add section → Custom Liquid** *again, directly below the first* → paste **all of
+   `shopify-paste-2.html`** → Save.
+
+Order matters: PASTE 1 must be above PASTE 2. Together they render as one page, and
+Dawn's own header/footer are auto-hidden so it looks like the standalone site.
+(To bring Dawn's menu/footer back, delete the first `<style>…</style>` block in PASTE 1.)
 
 ## D. Orders right now (before launch)
 The **Pre-order** button opens the form and sends the order to your **WhatsApp**

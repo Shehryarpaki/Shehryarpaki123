@@ -1,0 +1,375 @@
+{% comment %} STRIVE ARISE — PASTE 2 of 2. Add a SECOND Custom Liquid section BELOW the first and paste this. {% endcomment %}
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true"><div class="backdrop" data-close-modal></div><div class="panel" role="document"><button class="close" data-close-modal aria-label="Close pre-order form">✕</button><h2 id="modalTitle">Pre-order the Strive Arise</h2><p class="msub">Fill this in and we'll open WhatsApp with your order ready to send.</p><form id="preorderForm" novalidate><input type="hidden" id="model" value="Strive Arise" /><div class="field" id="f-name"><label for="name">Full name</label><input id="name" name="name" type="text" autocomplete="name" placeholder="e.g. Ali Khan" required /><div class="err">Please enter your name.</div></div><div class="field" id="f-phone"><label for="phone">WhatsApp number</label><input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="e.g. 0300 1234567" required /><div class="err">Please enter a valid phone number (at least 10 digits).</div></div><div class="field"><label for="city">City</label><input id="city" name="city" type="text" autocomplete="address-level2" placeholder="e.g. Lahore" /></div><input type="hidden" id="color" value="Black" /><div class="row2"><div class="field"><label for="qty">Quantity</label><select id="qty" name="qty"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></div><div class="field"><label for="payment">Payment method</label><select id="payment" name="payment"><option>Cash on Delivery</option></select></div></div><button type="submit" class="btn btn-wa submit"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-12.6 7.4L3 21l2.1-5.4A8.5 8.5 0 1 1 21 11.5z"/></svg>
+        Send order on WhatsApp
+      </button><p class="fineprint">Free delivery on pre-orders · Cash on Delivery available</p></form></div></div>
+<script>
+const PHONE = "923210077442"; // TODO: replace with the real number
+const FORMSPREE_ENDPOINT = ""; // disabled by default
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+document.getElementById('footWa').href = "https://wa.me/" + PHONE;
+document.getElementById('year').textContent = new Date().getFullYear();
+(function(){
+  const ring = document.getElementById('heroRing');
+  const C = 2 * Math.PI * 54; // circumference
+  ring.style.strokeDasharray = C;
+  ring.style.strokeDashoffset = C;
+  const target = C * (1 - 0.84);
+  if (reduceMotion){ ring.style.transition = 'none'; ring.style.strokeDashoffset = target; }
+  else { setTimeout(()=>{ ring.style.strokeDashoffset = target; }, 500); }
+})();
+(function(){
+  if (reduceMotion) return;
+  const host = document.getElementById('particles');
+  const N = window.innerWidth < 640 ? 14 : 26;
+  for (let i=0;i<N;i++){
+    const p = document.createElement('span');
+    p.className = 'pcl';
+    const s = 2 + Math.random()*4;
+    p.style.width = p.style.height = s+'px';
+    p.style.left = Math.random()*100+'%';
+    p.style.top = (100 + Math.random()*20)+'%';
+    p.style.opacity = .2 + Math.random()*.5;
+    p.style.animationDuration = (10 + Math.random()*16)+'s';
+    p.style.animationDelay = (-Math.random()*16)+'s';
+    host.appendChild(p);
+  }
+})();
+(function(){
+  const els = document.querySelectorAll('.reveal');
+  if (reduceMotion || !('IntersectionObserver' in window)){ els.forEach(e=>e.classList.add('in')); return; }
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach((e,i)=>{ if(e.isIntersecting){ e.target.style.transitionDelay = (e.target.dataset.delay||(i%3)*90)+'ms'; e.target.classList.add('in'); io.unobserve(e.target);} });
+  }, {threshold:.16, rootMargin:'0px 0px -8% 0px'});
+  els.forEach(e=>io.observe(e));
+})();
+function pinningEnabled(){ return window.innerWidth > 880 && !reduceMotion; }
+function applyPinMode(){
+  document.body.classList.toggle('pin-off', !pinningEnabled());
+}
+applyPinMode();
+const howRing = document.getElementById('howRing');
+const HOW_C = 2 * Math.PI * 86;
+howRing.style.strokeDasharray = HOW_C;
+function pinProgress(wrap){
+  const top = wrap.getBoundingClientRect().top;
+  const total = wrap.offsetHeight - window.innerHeight;
+  if (total <= 0) return 0;
+  return Math.min(Math.max(-top / total, 0), 1);
+}
+const band = document.getElementById('band3d');
+const insideWrap = document.querySelector('[data-pin="inside"]');
+const howWrap = document.querySelector('[data-pin="how"]');
+const callouts = [...document.querySelectorAll('.callout')];
+const steps = [...document.querySelectorAll('.step')];
+function updatePinned(){
+  if (!pinningEnabled()) return;
+  const pi = pinProgress(insideWrap);
+  band.style.transform = `rotateY(${-30 + pi*60}deg) rotateX(${8 - pi*16}deg)`;
+  callouts.forEach((c,i)=> c.classList.toggle('on', pi >= (i+0.4)/callouts.length ));
+  insideWrap.querySelector('.pin-progress > i').style.width = (pi*100)+'%';
+  const ph = pinProgress(howWrap);
+  howRing.style.strokeDashoffset = HOW_C * (1 - ph);
+  steps.forEach((s,i)=> s.classList.toggle('on', ph >= (i+0.25)/steps.length ));
+  howWrap.querySelector('.pin-progress > i').style.width = (ph*100)+'%';
+}
+const tlFill = document.getElementById('tlFill');
+const moments = [...document.querySelectorAll('.tmoment')];
+const timeline = document.querySelector('.timeline');
+function updateTimeline(){
+  if (!timeline) return;
+  const r = timeline.getBoundingClientRect();
+  const vh = window.innerHeight;
+  const start = vh*0.85, end = vh*0.2;
+  let p = (start - r.top) / (r.height - (vh - (start-end)) );
+  p = Math.min(Math.max(p,0),1);
+  tlFill.style.height = (p*100)+'%';
+  moments.forEach(m=>{
+    const mr = m.querySelector('.dot').getBoundingClientRect();
+    m.classList.toggle('on', mr.top < vh*0.7);
+  });
+}
+let ticking = false;
+function onScroll(){
+  if (ticking) return; ticking = true;
+  requestAnimationFrame(()=>{ updatePinned(); updateTimeline(); ticking = false; });
+}
+window.addEventListener('scroll', onScroll, {passive:true});
+window.addEventListener('resize', ()=>{ applyPinMode(); updatePinned(); updateTimeline(); });
+updatePinned(); updateTimeline();
+if (!pinningEnabled()){
+  if (reduceMotion){ howRing.style.strokeDashoffset = 0; }
+}
+const modal = document.getElementById('modal');
+const form = document.getElementById('preorderForm');
+let lastFocused = null;
+function openModal(){
+  lastFocused = document.activeElement;
+  modal.classList.add('open');
+  modal.setAttribute('aria-hidden','false');
+  document.body.style.overflow = 'hidden';
+  setTimeout(()=> document.getElementById('name').focus(), 60);
+  document.addEventListener('keydown', onKeydown);
+}
+function closeModal(){
+  modal.classList.remove('open');
+  modal.setAttribute('aria-hidden','true');
+  document.body.style.overflow = '';
+  document.removeEventListener('keydown', onKeydown);
+  if (lastFocused) lastFocused.focus();
+}
+function onKeydown(e){
+  if (e.key === 'Escape'){ closeModal(); return; }
+  if (e.key === 'Tab'){ // simple focus trap
+    const f = modal.querySelectorAll('button, input, select, a[href]');
+    const list = [...f].filter(el=>!el.disabled && el.offsetParent !== null);
+    if (!list.length) return;
+    const first = list[0], last = list[list.length-1];
+    if (e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+  }
+}
+document.querySelectorAll('[data-open-modal]').forEach(btn=>{
+  btn.addEventListener('click', ()=> openModal());
+});
+document.querySelectorAll('[data-close-modal]').forEach(el=>{
+  el.addEventListener('click', closeModal);
+});
+function setInvalid(id, bad){ document.getElementById(id).classList.toggle('invalid', bad); }
+form.addEventListener('submit', function(e){
+  e.preventDefault();
+  const name = document.getElementById('name').value.trim();
+  const phoneRaw = document.getElementById('phone').value.trim();
+  const phoneDigits = phoneRaw.replace(/\D/g,'');
+  const nameBad = name.length < 2;
+  const phoneBad = phoneDigits.length < 10;
+  setInvalid('f-name', nameBad);
+  setInvalid('f-phone', phoneBad);
+  if (nameBad){ document.getElementById('name').focus(); return; }
+  if (phoneBad){ document.getElementById('phone').focus(); return; }
+  const order = {
+    name,
+    phone: phoneRaw,
+    city: document.getElementById('city').value.trim() || '—',
+    model: document.getElementById('model').value,
+    color: document.getElementById('color').value,
+    qty: document.getElementById('qty').value,
+    payment: document.getElementById('payment').value
+  };
+  const lines = [
+    "🟦 Strive Wearables — Pre-order",
+    "",
+    "Name: " + order.name,
+    "WhatsApp: " + order.phone,
+    "City: " + order.city,
+    "Model: " + order.model,
+    "Colour: " + order.color,
+    "Quantity: " + order.qty,
+    "Payment: " + order.payment,
+    "",
+    "Please confirm my pre-order. (Free delivery)"
+  ];
+  const text = encodeURIComponent(lines.join("\n"));
+  const waURL = "https://wa.me/" + PHONE + "?text=" + text;
+  try {
+    const enc = new URLSearchParams({ "form-name": "preorder", ...order }).toString();
+    fetch("/", { method: "POST", headers: {"Content-Type":"application/x-www-form-urlencoded"}, body: enc }).catch(()=>{});
+  } catch(_){}
+  if (FORMSPREE_ENDPOINT){
+    try {
+      fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
+        headers: {"Content-Type":"application/json","Accept":"application/json"},
+        body: JSON.stringify(order)
+      }).catch(()=>{}); // fire-and-forget; never blocks the WhatsApp handoff
+    } catch(_){}
+  }
+  window.open(waURL, "_blank", "noopener");
+  closeModal();
+});
+</script><script>
+const SHOPIFY_VARIANT_ID = ""; /* LAUNCH: paste product Variant ID for real Shopify checkout; "" keeps WhatsApp */
+const PHONE = "923210077442"; // TODO: replace with the real number
+const FORMSPREE_ENDPOINT = ""; // disabled by default
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+document.getElementById('footWa').href = "https://wa.me/" + PHONE;
+document.getElementById('year').textContent = new Date().getFullYear();
+(function(){
+  const ring = document.getElementById('heroRing');
+  const C = 2 * Math.PI * 54; // circumference
+  ring.style.strokeDasharray = C;
+  ring.style.strokeDashoffset = C;
+  const target = C * (1 - 0.84);
+  if (reduceMotion){ ring.style.transition = 'none'; ring.style.strokeDashoffset = target; }
+  else { setTimeout(()=>{ ring.style.strokeDashoffset = target; }, 500); }
+})();
+(function(){
+  if (reduceMotion) return;
+  const host = document.getElementById('particles');
+  const N = window.innerWidth < 640 ? 14 : 26;
+  for (let i=0;i<N;i++){
+    const p = document.createElement('span');
+    p.className = 'pcl';
+    const s = 2 + Math.random()*4;
+    p.style.width = p.style.height = s+'px';
+    p.style.left = Math.random()*100+'%';
+    p.style.top = (100 + Math.random()*20)+'%';
+    p.style.opacity = .2 + Math.random()*.5;
+    p.style.animationDuration = (10 + Math.random()*16)+'s';
+    p.style.animationDelay = (-Math.random()*16)+'s';
+    host.appendChild(p);
+  }
+})();
+(function(){
+  const els = document.querySelectorAll('.reveal');
+  if (reduceMotion || !('IntersectionObserver' in window)){ els.forEach(e=>e.classList.add('in')); return; }
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach((e,i)=>{ if(e.isIntersecting){ e.target.style.transitionDelay = (e.target.dataset.delay||(i%3)*90)+'ms'; e.target.classList.add('in'); io.unobserve(e.target);} });
+  }, {threshold:.16, rootMargin:'0px 0px -8% 0px'});
+  els.forEach(e=>io.observe(e));
+})();
+function pinningEnabled(){ return window.innerWidth > 880 && !reduceMotion; }
+function applyPinMode(){
+  document.body.classList.toggle('pin-off', !pinningEnabled());
+}
+applyPinMode();
+const howRing = document.getElementById('howRing');
+const HOW_C = 2 * Math.PI * 86;
+howRing.style.strokeDasharray = HOW_C;
+function pinProgress(wrap){
+  const top = wrap.getBoundingClientRect().top;
+  const total = wrap.offsetHeight - window.innerHeight;
+  if (total <= 0) return 0;
+  return Math.min(Math.max(-top / total, 0), 1);
+}
+const band = document.getElementById('band3d');
+const insideWrap = document.querySelector('[data-pin="inside"]');
+const howWrap = document.querySelector('[data-pin="how"]');
+const callouts = [...document.querySelectorAll('.callout')];
+const steps = [...document.querySelectorAll('.step')];
+function updatePinned(){
+  if (!pinningEnabled()) return;
+  const pi = pinProgress(insideWrap);
+  band.style.transform = `rotateY(${-30 + pi*60}deg) rotateX(${8 - pi*16}deg)`;
+  callouts.forEach((c,i)=> c.classList.toggle('on', pi >= (i+0.4)/callouts.length ));
+  insideWrap.querySelector('.pin-progress > i').style.width = (pi*100)+'%';
+  const ph = pinProgress(howWrap);
+  howRing.style.strokeDashoffset = HOW_C * (1 - ph);
+  steps.forEach((s,i)=> s.classList.toggle('on', ph >= (i+0.25)/steps.length ));
+  howWrap.querySelector('.pin-progress > i').style.width = (ph*100)+'%';
+}
+const tlFill = document.getElementById('tlFill');
+const moments = [...document.querySelectorAll('.tmoment')];
+const timeline = document.querySelector('.timeline');
+function updateTimeline(){
+  if (!timeline) return;
+  const r = timeline.getBoundingClientRect();
+  const vh = window.innerHeight;
+  const start = vh*0.85, end = vh*0.2;
+  let p = (start - r.top) / (r.height - (vh - (start-end)) );
+  p = Math.min(Math.max(p,0),1);
+  tlFill.style.height = (p*100)+'%';
+  moments.forEach(m=>{
+    const mr = m.querySelector('.dot').getBoundingClientRect();
+    m.classList.toggle('on', mr.top < vh*0.7);
+  });
+}
+let ticking = false;
+function onScroll(){
+  if (ticking) return; ticking = true;
+  requestAnimationFrame(()=>{ updatePinned(); updateTimeline(); ticking = false; });
+}
+window.addEventListener('scroll', onScroll, {passive:true});
+window.addEventListener('resize', ()=>{ applyPinMode(); updatePinned(); updateTimeline(); });
+updatePinned(); updateTimeline();
+if (!pinningEnabled()){
+  if (reduceMotion){ howRing.style.strokeDashoffset = 0; }
+}
+const modal = document.getElementById('modal');
+const form = document.getElementById('preorderForm');
+let lastFocused = null;
+function openModal(){
+  lastFocused = document.activeElement;
+  modal.classList.add('open');
+  modal.setAttribute('aria-hidden','false');
+  document.body.style.overflow = 'hidden';
+  setTimeout(()=> document.getElementById('name').focus(), 60);
+  document.addEventListener('keydown', onKeydown);
+}
+function closeModal(){
+  modal.classList.remove('open');
+  modal.setAttribute('aria-hidden','true');
+  document.body.style.overflow = '';
+  document.removeEventListener('keydown', onKeydown);
+  if (lastFocused) lastFocused.focus();
+}
+function onKeydown(e){
+  if (e.key === 'Escape'){ closeModal(); return; }
+  if (e.key === 'Tab'){ // simple focus trap
+    const f = modal.querySelectorAll('button, input, select, a[href]');
+    const list = [...f].filter(el=>!el.disabled && el.offsetParent !== null);
+    if (!list.length) return;
+    const first = list[0], last = list[list.length-1];
+    if (e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+  }
+}
+document.querySelectorAll('[data-open-modal]').forEach(btn=>{
+  btn.addEventListener('click', ()=> openModal());
+});
+document.querySelectorAll('[data-close-modal]').forEach(el=>{
+  el.addEventListener('click', closeModal);
+});
+function setInvalid(id, bad){ document.getElementById(id).classList.toggle('invalid', bad); }
+form.addEventListener('submit', function(e){
+  e.preventDefault();
+  const name = document.getElementById('name').value.trim();
+  const phoneRaw = document.getElementById('phone').value.trim();
+  const phoneDigits = phoneRaw.replace(/\D/g,'');
+  const nameBad = name.length < 2;
+  const phoneBad = phoneDigits.length < 10;
+  setInvalid('f-name', nameBad);
+  setInvalid('f-phone', phoneBad);
+  if (nameBad){ document.getElementById('name').focus(); return; }
+  if (phoneBad){ document.getElementById('phone').focus(); return; }
+  const order = {
+    name,
+    phone: phoneRaw,
+    city: document.getElementById('city').value.trim() || '—',
+    model: document.getElementById('model').value,
+    color: document.getElementById('color').value,
+    qty: document.getElementById('qty').value,
+    payment: document.getElementById('payment').value
+  };
+  const lines = [
+    "🟦 Strive Wearables — Pre-order",
+    "",
+    "Name: " + order.name,
+    "WhatsApp: " + order.phone,
+    "City: " + order.city,
+    "Model: " + order.model,
+    "Colour: " + order.color,
+    "Quantity: " + order.qty,
+    "Payment: " + order.payment,
+    "",
+    "Please confirm my pre-order. (Free delivery)"
+  ];
+  if (SHOPIFY_VARIANT_ID){ var q=document.getElementById("qty").value||1; window.location.href="/cart/"+SHOPIFY_VARIANT_ID+":"+q; return; }
+const text = encodeURIComponent(lines.join("\n"));
+  const waURL = "https://wa.me/" + PHONE + "?text=" + text;
+  try {
+    const enc = new URLSearchParams({ "form-name": "preorder", ...order }).toString();
+    fetch("/", { method: "POST", headers: {"Content-Type":"application/x-www-form-urlencoded"}, body: enc }).catch(()=>{});
+  } catch(_){}
+  if (FORMSPREE_ENDPOINT){
+    try {
+      fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
+        headers: {"Content-Type":"application/json","Accept":"application/json"},
+        body: JSON.stringify(order)
+      }).catch(()=>{}); // fire-and-forget; never blocks the WhatsApp handoff
+    } catch(_){}
+  }
+  window.open(waURL, "_blank", "noopener");
+  closeModal();
+});
+</script>
