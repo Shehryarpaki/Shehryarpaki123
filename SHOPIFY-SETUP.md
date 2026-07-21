@@ -1,4 +1,4 @@
-# Strive Power on Shopify (Dawn) — pre-launch setup
+# Strive Arise on Shopify (Dawn) — pre-launch setup
 
 Your business isn't released yet, so this sets up a **"coming soon" store**: the page
 is live inside Dawn, but only people with the password can see it until you launch.
@@ -9,7 +9,7 @@ tick **Restrict access to visitors with the password** → set a password → Sa
 Now the public sees a coming-soon page; you can still preview everything.
 
 ## B. Add your product (as a draft for now)
-1. **Products → Add product** → Title: `Strive Power`, price `14000`.
+1. **Products → Add product** → Title: `Strive Arise`, price `14000`.
 2. Upload your real photo(s).
 3. Set status to **Draft** (or Active — it stays hidden while the store password is on).
 4. Later you'll copy this product's **Variant ID** (see step E).
