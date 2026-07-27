@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://shehryarpaki.github.io/shehryarpaki123/sitemap.xml
