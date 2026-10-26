@@ -5,11 +5,11 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#0B1220;font-fam
 .scene{position:absolute;inset:0;opacity:0}
 /* safe zone: y 230-1440, right 230px clear */
 .safe{position:absolute;left:60px;top:230px;width:790px;height:1210px;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;padding-top:40px;gap:34px}
-.big{font-weight:700;line-height:.98;letter-spacing:-2px;font-size:128px;text-transform:uppercase}
-.mid{font-weight:700;line-height:1;letter-spacing:-1px;font-size:96px;text-transform:uppercase}
+.big{font-weight:700;line-height:.98;letter-spacing:-2px;font-size:100px;text-transform:uppercase}
+.mid{font-weight:700;line-height:1;letter-spacing:-1px;font-size:84px;text-transform:uppercase}
 .cy{color:#06B6D4}.gn{color:#22C55E}
 .mono{font-family:'JetBrains Mono','Courier New',monospace;font-size:38px;letter-spacing:3px;color:#06B6D4}
-#band{position:absolute;width:760px;height:760px;object-fit:cover;mix-blend-mode:screen;-webkit-mask-image:radial-gradient(circle,#000 58%,transparent 80%);mask-image:radial-gradient(circle,#000 58%,transparent 80%)}
+#band{position:absolute;width:560px;height:560px;border-radius:56px;object-fit:cover;background:#fff;box-shadow:0 30px 90px rgba(0,0,0,.55),0 0 0 3px rgba(6,182,212,.35)}
 .pill{padding:22px 40px;border-radius:999px;border:3px solid #06B6D4;font-size:54px;font-weight:700;background:rgba(6,182,212,.12)}
 .card{width:640px;border-radius:44px;background:#0F172A;border:3px solid rgba(255,255,255,.14);padding:44px;display:flex;flex-direction:column;gap:26px}
 .row{display:flex;justify-content:space-between;align-items:center;font-size:48px;font-weight:700;padding:22px 28px;border-radius:24px;background:rgba(255,255,255,.06)}
@@ -21,31 +21,31 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#0B1220;font-fam
 </style></head><body>
 <div id="bg"></div><div class="wm">STRIVE WEARABLES</div>
 
-<div class="scene" id="s1" data-a="0" data-b="2.9"><div class="safe"><div class="mono">NO MORE</div><div class="big">STOP<br>CHARGING<br><span class="cy">EVERY<br>NIGHT</span></div></div></div>
+<div class="scene" id="s1" data-a="0" data-b="2.9"><div class="safe"><div class="mono">NO MORE</div><div class="big">STOP CHARGING<br><span class="cy">EVERY NIGHT</span></div></div></div>
 
 <div class="scene" id="s2" data-a="2.9" data-b="4.0"><div class="safe"><div class="big"><span class="cy">14</span> DAYS<br>1 CHARGE</div></div></div>
 
-<div class="scene" id="s3" data-a="4.0" data-b="7.6"><div class="safe"><div class="mono">THE SCREEN EATS BATTERY</div><div class="big">NO<br><span class="cy">SCREEN</span></div></div></div>
+<div class="scene" id="s3" data-a="4.0" data-b="7.6"><div class="safe"><div class="mono">THE SCREEN EATS BATTERY</div><div class="big">NO <span class="cy">SCREEN</span></div></div></div>
 
 <div class="scene" id="s4" data-a="7.6" data-b="9.4"><div class="safe"><div class="mid">HEART RATE<br>SLEEP<br>STEPS<br><span class="cy">SpO₂</span></div></div></div>
 
 <div class="scene" id="s5" data-a="9.4" data-b="13.0"><div class="safe"><div class="mono">THE COMPANION APP</div><div class="card"><div class="row">Heart rate <i>● live</i></div><div class="row">Sleep <i>● synced</i></div><div class="row">Steps <i>● synced</i></div><div class="row">SpO₂ <i>● on demand</i></div></div></div></div>
 
-<div class="scene" id="s6" data-a="13.0" data-b="16.4"><div class="safe"><div class="mono">THE BAND</div><div class="big">JUST<br><span class="cy">TRACKS</span></div></div></div>
+<div class="scene" id="s6" data-a="13.0" data-b="16.4"><div class="safe"><div class="mono">THE BAND</div><div class="big">IT JUST<br><span class="cy">TRACKS</span></div></div></div>
 
 <div class="scene" id="s7" data-a="16.4" data-b="18.6"><div class="safe"><div class="big cy">IP68</div><div class="pill">SHOWER · SWIM</div></div></div>
 
-<div class="scene" id="s8" data-a="18.6" data-b="20.4"><div class="safe"><div class="mono">STRIVE ARISE</div><div class="big">RS<br><span class="cy">14,000</span></div></div></div>
+<div class="scene" id="s8" data-a="18.6" data-b="20.4"><div class="safe"><div class="mono">STRIVE ARISE</div><div class="big">RS <span class="cy">14,000</span></div></div></div>
 
 <div class="scene" id="s9" data-a="20.4" data-b="23.6"><div class="safe"><div class="mono">DELIVERY</div><div class="mid">SAME DAY<br><span class="cy">LAHORE</span></div><div class="pill">ALL PAKISTAN 🇵🇰</div></div></div>
 
-<div class="scene" id="s10" data-a="23.6" data-b="25.1"><div class="safe"><div class="mono">PRE-ORDERS OPEN</div><div class="big">DROP<br><span class="cy">2</span></div></div></div>
+<div class="scene" id="s10" data-a="23.6" data-b="25.1"><div class="safe"><div class="mono">PRE-ORDERS OPEN</div><div class="big">DROP <span class="cy">2</span></div></div></div>
 
 <div class="scene" id="s11" data-a="25.1" data-b="28.0"><div class="safe"><div class="mono">COMMENT</div><div class="big cy">"STRIVE"</div><div class="pill">I'LL SEND THE LINK</div></div></div>
 
-<div class="scene" id="s12" data-a="28.0" data-b="30.9"><div class="safe"><div class="big">CHARGE<br>ONCE.<br>FORGET<br>IT <span class="cy">14<br>DAYS</span></div></div></div>
+<div class="scene" id="s12" data-a="28.0" data-b="30.9"><div class="safe"><div class="big">CHARGE ONCE.<br>FORGET IT<br><span class="cy">14 DAYS</span></div></div></div>
 
-<img id="band" src="band-black.png">
+<img id="band" src="band-photo.png">
 <div id="cap"><span id="capt"></span></div>
 <div id="bar"></div>
 <script>
@@ -53,7 +53,7 @@ const T=30.9;
 const caps=[[0,2.9,"Stop charging your watch every night. 14 days."],[2.9,4.0,"One charge. Done."],[4.0,7.6,"The screen eats the battery, so we took it off."],[7.6,9.4,"Heart rate, sleep, steps, SpO2."],[9.4,16.4,"All in the app instead, and the band itself just stays on your wrist and does nothing but track."],[16.4,18.6,"IP68 waterproof. Shower, swim, doesn't matter."],[18.6,20.4,"Rs 14,000. Made in Pakistan."],[20.4,23.6,"Same-day delivery in Lahore, anywhere else in Pakistan too."],[23.6,25.1,"Drop 2 is open."],[25.1,28.0,"Comment STRIVE and I'll send you the link."],[28.0,30.9,"Charge it once. Forget it for 14 days."]];
 const ease=x=>1-Math.pow(1-Math.min(1,Math.max(0,x)),3);
 // band position keyframes [t, x, y, scale, rotate, opacity]
-const K=[[0,60,650,.62,-8,1],[2.9,70,640,.7,0,1],[4.0,60,650,.64,10,1],[7.6,80,680,.6,0,1],[9.4,200,700,0,0,0],[13.0,60,650,.7,-6,1],[16.4,80,640,.66,6,1],[18.6,100,650,.62,0,1],[20.4,90,660,.58,-4,1],[23.6,60,640,.72,0,1],[25.1,80,660,.62,0,1],[28.0,60,650,.7,-8,1],[30.9,60,650,.62,-8,1]];
+const K=[[0,250,680,1.0,-4,1],[2.9,255,670,1.04,0,1],[4.0,250,680,.98,5,1],[7.6,260,660,.94,0,1],[9.3,260,665,.95,0,1],[9.4,260,665,.95,0,0],[12.9,260,665,.95,0,0],[13.0,250,680,1.0,-3,1],[16.4,255,670,1.02,3,1],[18.6,250,680,.98,0,1],[20.4,255,690,.95,-2,1],[23.6,250,670,1.02,0,1],[25.1,255,690,.96,0,1],[28.0,250,680,1.0,-4,1],[30.9,250,680,1.0,-4,1]];
 function kf(t){let i=0;while(i<K.length-2&&t>=K[i+1][0])i++;const a=K[i],b=K[i+1];const p=ease((t-a[0])/(b[0]-a[0]||1));return a.map((v,j)=>j?v+(b[j]-v)*p:v)}
 function render(t){
  document.querySelectorAll('.scene').forEach(s=>{const a=+s.dataset.a,b=+s.dataset.b;
