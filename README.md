@@ -38,13 +38,17 @@ To change a photo, replace the file and **keep the same file name**. Portrait 4:
 
 ## 3. Link The Loop to Shopify checkout
 
-The "Pre-order now" button in the product card is a Shopify Buy Button. It finds your product automatically:
+The "Pre-order now" button in the product card is the same Shopify Buy Button the Arise used. It finds your product automatically and opens Shopify checkout in the same tab (so it works inside Instagram and WhatsApp's built-in browsers). For it to appear:
 
-1. In Shopify admin create the product with **"Loop" in its title** (e.g. "Strive The Loop"), price 15000, and the three colour variants.
-2. Set it to **Active** and make sure it is available on the **Online Store** sales channel.
-3. That's it — the site picks it up on the next page load. Until then (or if Shopify can't load) the button takes pre-orders on WhatsApp.
+1. The product has **"Loop" in its title** (e.g. "Strive The Loop") and is **Active**.
+2. It is published to the **Buy Button** sales channel (product page → *Publishing* / *Sales channels* → tick **Buy Button**). The site's Shopify key only sees products on that channel.
+3. It can be sold: either it has stock, or each variant has **"Continue selling when out of stock"** ticked — that's how Shopify takes pre-orders.
 
-If you'd rather pin a specific product, open `index.html`, find `var LOOP_SHOPIFY_PRODUCT_ID = '';` and paste the product's ID between the quotes (Shopify admin → Products → open the product → the number at the end of the URL).
+**Check it from your phone:** open `strivewearables.com/?shopify` — a box under the button lists the products the site can see and says exactly why it's using Shopify or WhatsApp.
+
+If anything is missing, customers still get a working "Pre-order now" button that sends the order on WhatsApp.
+
+To pin a specific product instead, open `index.html`, find `var LOOP_SHOPIFY_PRODUCT_ID = '';` and paste the product's ID between the quotes (Shopify admin → Products → open the product → the number at the end of the URL).
 
 ## 4. Get an email for every order (Netlify Forms)
 

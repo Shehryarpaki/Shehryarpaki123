@@ -4,77 +4,148 @@
 <script type="text/javascript">
 /*<![CDATA[*/
 (function () {
-  /* Shopify link for "Strive The Loop". Leave LOOP_SHOPIFY_PRODUCT_ID empty and the page finds the first
-     product in the store whose title contains "Loop" (it must be Active and published to the Online Store).
-     Or paste the product ID here (Shopify admin -> Products -> open the product -> number at the end of the URL).
-     If nothing is found, or Shopify cannot load, the button takes pre-orders on WhatsApp instead. */
+  /* Shopify checkout for "Strive The Loop", using the same Shopify Buy Button as the Arise.
+     The page finds the Shopify product with "Loop" in its title. For it to show, the product must be
+     Active, published to the "Buy Button" sales channel, and have stock or "Continue selling when out
+     of stock" ticked on its variants (that is how Shopify takes pre-orders).
+     To pin a product, paste its ID below (Shopify admin -> Products -> open it -> number at the end of the URL).
+     Open the site with ?shopify on the end of the address to see what the page found.
+     If Shopify can't be used, the button takes pre-orders on WhatsApp instead. */
   var LOOP_SHOPIFY_PRODUCT_ID = '';
-  var scriptURL = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
+  var DOMAIN = '5iqfgb-1b.myshopify.com';
+  var TOKEN = '1c2b8f2ffc4c2e00e55aa37c6dcdc14c';
+  var SDK = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
   var node = document.getElementById('product-component-loop');
-  var settled = false;
-  var fallbackTimer = setTimeout(showFallback, 10000);
-  function showFallback() {
-    if (settled) return;
-    settled = true;
-    clearTimeout(fallbackTimer);
-    if (node && !node.hasChildNodes()) {
-      var b = document.createElement('button');
-      b.type = 'button';
-      b.className = 'btn btn-grad';
-      b.style.cssText = 'width:100%;justify-content:center;font-family:inherit;font-size:16px';
-      b.textContent = 'Pre-order now';
-      b.addEventListener('click', function () { if (typeof openModal === 'function') openModal(); });
-      node.appendChild(b);
+  var debug = /[?&#]shopify\b/i.test(location.search + location.hash);
+  var state = 'loading';
+  var lines = [];
+  var COLOUR = { Carbon: /carbon|black/i, Midnight: /midnight|navy|blue/i, Cloud: /cloud|white/i };
+  var component = null;
+
+  function note(s) {
+    lines.push(s);
+    if (!debug) return;
+    var box = document.getElementById('shopifyDebug');
+    if (!box) {
+      box = document.createElement('pre');
+      box.id = 'shopifyDebug';
+      box.style.cssText = 'white-space:pre-wrap;font:12px/1.5 ui-monospace,monospace;color:#cbd5e1;background:#0C1B33;border:1px solid rgba(148,163,184,.3);border-radius:12px;padding:12px;margin-top:12px;text-align:left';
+      node.parentNode.appendChild(box);
     }
+    box.textContent = 'Shopify check\n' + lines.join('\n');
   }
-  function markLoaded() { settled = true; clearTimeout(fallbackTimer); }
+  function makeButton(text) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'btn btn-grad';
+    b.style.cssText = 'width:100%;justify-content:center;font-family:inherit;font-size:16px';
+    b.textContent = text;
+    return b;
+  }
+  function showFallback(reason) {
+    clearTimeout(fallbackTimer);
+    if (reason) note('-> Pre-orders go to WhatsApp: ' + reason);
+    if (state !== 'loading') return;
+    state = 'fallback';
+    node.innerHTML = '';
+    var b = makeButton('Pre-order now');
+    b.addEventListener('click', function () { if (typeof openModal === 'function') openModal(); });
+    node.appendChild(b);
+  }
   function numericId(gid) {
     var s = String(gid || '');
     if (s.indexOf('gid://') !== 0) { try { s = atob(s); } catch (e) {} }
     var m = s.match(/(\d+)$/);
     return m ? m[1] : '';
   }
-  if (window.ShopifyBuy) {
-    if (window.ShopifyBuy.UI) { ShopifyBuyInit(); } else { loadScript(); }
-  } else { loadScript(); }
-  function loadScript() {
-    var script = document.createElement('script');
-    script.async = true; script.src = scriptURL;
-    script.onerror = showFallback;
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(script);
-    script.onload = ShopifyBuyInit;
-  }
-  function findLoopProduct(client) {
-    if (LOOP_SHOPIFY_PRODUCT_ID) return Promise.resolve(LOOP_SHOPIFY_PRODUCT_ID);
-    return client.product.fetchAll(50).then(function (products) {
-      var hit = (products || []).filter(function (x) {
-        return /loop/i.test(x.title || '') && x.availableForSale !== false;
-      })[0];
-      return hit ? numericId(hit.id) : '';
+
+  var placeholder = makeButton('Loading checkout…');
+  placeholder.disabled = true;
+  placeholder.style.opacity = '.7';
+  node.appendChild(placeholder);
+  var fallbackTimer = setTimeout(function () { showFallback('Shopify is slow to load (it will switch over if it finishes)'); }, 5000);
+
+  function findProduct() {
+    if (LOOP_SHOPIFY_PRODUCT_ID) {
+      note('Using the pinned product ID ' + LOOP_SHOPIFY_PRODUCT_ID);
+      return Promise.resolve({ id: LOOP_SHOPIFY_PRODUCT_ID, title: 'pinned product', available: true });
+    }
+    return fetch('https://' + DOMAIN + '/api/2025-10/graphql.json', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-Shopify-Storefront-Access-Token': TOKEN },
+      body: JSON.stringify({ query: '{ products(first: 100) { edges { node { id title handle availableForSale } } } }' })
+    }).then(function (r) {
+      if (!r.ok) throw new Error('Shopify answered HTTP ' + r.status);
+      return r.json();
+    }).then(function (d) {
+      if (d.errors) throw new Error(d.errors.map(function (e) { return e.message; }).join('; '));
+      var all = ((d.data && d.data.products && d.data.products.edges) || []).map(function (e) { return e.node; });
+      note('Products this site can see in Shopify: ' + (all.length ? all.map(function (x) {
+        return '"' + x.title + '"' + (x.availableForSale ? '' : ' (not available for sale)');
+      }).join(', ') : 'none'));
+      var loops = all.filter(function (x) { return /loop/i.test(x.title + ' ' + x.handle); });
+      loops.sort(function (a, b) {
+        return (b.availableForSale - a.availableForSale) || (/the loop/i.test(b.title) - /the loop/i.test(a.title));
+      });
+      var hit = loops[0];
+      return hit ? { id: numericId(hit.id), title: hit.title, available: hit.availableForSale !== false } : null;
     });
   }
-  function ShopifyBuyInit() {
-    try {
-      var client = ShopifyBuy.buildClient({
-        domain: '5iqfgb-1b.myshopify.com',
-        storefrontAccessToken: '1c2b8f2ffc4c2e00e55aa37c6dcdc14c',
+
+  var sdkReady = new Promise(function (resolve, reject) {
+    if (window.ShopifyBuy && window.ShopifyBuy.UI) { resolve(); return; }
+    var s = document.createElement('script');
+    s.async = true; s.src = SDK;
+    s.onload = function () { resolve(); };
+    s.onerror = function () { reject(new Error('the Shopify Buy Button script was blocked or failed to load')); };
+    (document.head || document.body).appendChild(s);
+  });
+  sdkReady.catch(function () {});
+
+  findProduct().then(function (p) {
+    if (!p) { showFallback('no product with "Loop" in its title is visible. Publish it to the Buy Button sales channel in Shopify.'); return; }
+    note('Found "' + p.title + '" (ID ' + p.id + ')');
+    if (!p.available) { showFallback('"' + p.title + '" is not available for sale. Add stock, or tick "Continue selling when out of stock" on each variant.'); return; }
+    return sdkReady.then(function () {
+      var client = ShopifyBuy.buildClient({ domain: DOMAIN, storefrontAccessToken: TOKEN });
+      return ShopifyBuy.UI.onReady(client);
+    }).then(function (ui) {
+      clearTimeout(fallbackTimer);
+      state = 'rendering';
+      node.innerHTML = '';
+      return new Promise(function (resolve) { resolve(ui.createComponent('product', {
+        id: p.id,
+        node: node,
+        moneyFormat: 'Rs.%7B%7Bamount%7D%7D',
+        options: {"product":{"buttonDestination":"checkout","contents":{"img":false,"title":false,"price":false,"options":true},"styles":{"button":{"font-family":"Space Grotesk, sans-serif","font-weight":"600","font-size":"16px","padding-top":"16px","padding-bottom":"16px","padding-left":"30px","padding-right":"30px","color":"#0C1B33","background-color":"#F26B5B","background":"#F26B5B","border-radius":"999px",":hover":{"background":"#E25A4A"},":focus":{"background":"#E25A4A"}}},"text":{"button":"Pre-order now","outOfStock":"Sold out"}},"cart":{"popup":false,"styles":{"button":{"color":"#0C1B33","background-color":"#F26B5B","background":"#F26B5B","border-radius":"999px",":hover":{"background":"#E25A4A"},":focus":{"background":"#E25A4A"}}},"text":{"total":"Subtotal","button":"Checkout"}}}
+      })); }).then(function (c) {
+        state = 'shopify';
+        component = c || null;
+        note('Shopify Buy Button is live. Pre-order now opens Shopify checkout in the same tab.');
+        var on = document.querySelector('.swatch.on');
+        if (on) window.striveSetShopifyColour(on.dataset.variant);
+      }, function (e) {
+        state = 'loading';
+        throw e;
       });
-      ShopifyBuy.UI.onReady(client).then(function (ui) {
-        if (settled) return;
-        return findLoopProduct(client).then(function (id) {
-          if (settled) return;
-          if (!id) { showFallback(); return; }
-          markLoaded();
-          return ui.createComponent('product', {
-            id: id,
-            node: node,
-            moneyFormat: 'Rs.%7B%7Bamount%7D%7D',
-            options: {"product":{"contents":{"img":false,"title":false,"price":false,"options":true},"styles":{"button":{"font-family":"Space Grotesk, sans-serif","font-weight":"600","font-size":"16px","padding-top":"16px","padding-bottom":"16px","padding-left":"30px","padding-right":"30px","color":"#0C1B33","background-color":"#F26B5B","background":"#F26B5B","border-radius":"999px",":hover":{"background":"#E25A4A"},":focus":{"background":"#E25A4A"}}},"text":{"button":"Pre-order now"}},"cart":{"styles":{"button":{"color":"#0C1B33","background-color":"#F26B5B","background":"#F26B5B","border-radius":"999px",":hover":{"background":"#E25A4A"},":focus":{"background":"#E25A4A"}}},"text":{"total":"Subtotal","button":"Checkout"}}},
-          });
-        });
-      }).catch(showFallback);
-    } catch (e) { showFallback(); }
-  }
+    });
+  }).catch(function (e) {
+    showFallback((e && e.message) || 'Shopify could not be reached');
+  });
+
+  /* keep Shopify's colour menu in step with the site's colour swatches (Shopify's menu stays visible) */
+  window.striveSetShopifyColour = function (colour) {
+    try {
+      var re = COLOUR[colour];
+      var m = component && component.model;
+      if (!re || !m || !m.options || typeof component.updateVariant !== 'function') return;
+      m.options.forEach(function (opt) {
+        var vals = (opt.values || []).map(function (v) { return v && v.value != null ? String(v.value) : String(v); });
+        var val = vals.filter(function (v) { return re.test(v); })[0];
+        if (val) component.updateVariant(opt.name, val);
+      });
+    } catch (e) {}
+  };
 })();
 /*]]>*/
 </script></div></div></div><div class="soldout-card reveal"><div><span class="badge-soldout">Sold out</span><h3>Strive Arise</h3><p>Our first band, PKR 14,000 — currently sold out. Leave your email below and we'll tell you if it comes back.</p></div><a class="btn btn-ghost" href="#newsletterForm">Notify me on restock</a></div></div></section><section class="day section-pad"><div class="wrap"><div class="sec-head reveal" style="text-align:center;margin-inline:auto"><span class="eyebrow">A day with Strive</span><h2>It just keeps tracking</h2><p>From your first stretch to lights out — quietly recording the numbers, no screen required.</p></div><div class="timeline"><div class="tl-line" aria-hidden="true"><i id="tlFill"></i></div><div class="tmoment"><span class="dot"></span><div class="time">Morning · 6:40</div><h3>Wake up</h3><p>Last night's sleep — hours, light and deep — is already in the app when you reach for your phone.</p></div><div class="tmoment"><span class="dot"></span><div class="time">Midday · 13:15</div><h3>On the move</h3><p>Steps, distance and calories tick up as you go about your day. Heart rate logs in the background.</p></div><div class="tmoment"><span class="dot"></span><div class="time">Evening · 18:30</div><h3>Workout</h3><p>Start a sport mode and check your SpO₂ when you cool down.</p></div><div class="tmoment"><span class="dot"></span><div class="time">Night · 23:00</div><h3>Lights out</h3><p>The band keeps going for up to 14 days — so it's still tracking tomorrow, and the day after.</p></div></div></div></section><section class="reviews section-pad" id="reviews"><div class="wrap"><div class="sec-head reveal" style="text-align:center;margin-inline:auto"><span class="eyebrow">Reviews</span><h2>What customers say</h2><p>Real reviews from real customers, added as they come in.</p></div><div class="review-grid"><article class="review-card reveal"><div class="stars" role="img" aria-label="4 out of 5 stars">★★★★<span class="off">★</span></div><p class="rtext">"The battery life lasts for 25 days"</p><div class="rmeta">Hamza Abbad · Karachi</div></article></div><div class="review-cta reveal"><button type="button" class="btn btn-grad" data-open-review>Write a review</button><p class="review-cta-note">Own a Strive band? Tell us what you think — genuine reviews get added here.</p></div></div></section><section class="faq section-pad" id="faq"><div class="wrap"><div class="sec-head reveal" style="text-align:center;margin-inline:auto"><span class="eyebrow">Questions</span><h2 style="color:#fff">Before you pre-order</h2><p style="color:#9fb3cf">Honest answers, no fine-print surprises.</p></div><div class="faq-list">
@@ -255,6 +326,7 @@ document.querySelectorAll('.swatch').forEach(s=>{
     document.getElementById('swatchName').textContent = v;
     document.getElementById('swatchSub').textContent = '· ' + s.dataset.sub;
     const sel = document.getElementById('color'); if (sel) sel.value = v;
+    if (window.striveSetShopifyColour) window.striveSetShopifyColour(v);
     renderMedia();
   });
 });
