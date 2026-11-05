@@ -1,3 +1,8 @@
+> **Current setup (Strive The Loop):** the live site is `index.html` on GitHub Pages at strivewearables.com, and its
+> "Pre-order now" button links to Shopify automatically — see README section 3. The Liquid paste files described below
+> (`shopify-paste-1.html`, `shopify-paste-2.html`) are from the Strive Arise era, still mention the Arise, Cash on Delivery and
+> free delivery, and should not be pasted into a theme without updating them first.
+
 # Strive Arise on Shopify (Dawn) — pre-launch setup
 
 Your business isn't released yet, so this sets up a **"coming soon" store**: the page

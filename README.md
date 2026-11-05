@@ -22,19 +22,31 @@ The hero/footer/pre-order buttons and the WhatsApp handoff all use this one valu
 
 ## 2. Product photos
 
-The product card shows **Strive The Loop** in three colourways. The photos live in `img/`:
+The product card shows **Strive The Loop** in three colourways and three views. All photos live in `img/`:
 
-| Colourway | File |
-|---|---|
-| Midnight (dark navy) | `img/loop-midnight.jpg` |
-| Carbon (black) | `img/loop-carbon.jpg` |
-| Cloud (white) | `img/loop-cloud.jpg` |
+| | Angled view | Side view | Sensor view |
+|---|---|---|---|
+| Carbon (black) | `loop-carbon-angle.jpg` | `loop-carbon-side.jpg` | `loop-carbon-sensor.jpg` |
+| Midnight (dark navy) | `loop-midnight-angle.jpg` | `loop-midnight-side.jpg` | `loop-midnight-sensor.jpg` |
+| Cloud (white) | `loop-cloud-angle.jpg` | `loop-cloud-side.jpg` | `loop-cloud-sensor.jpg` |
 
-To change a photo, replace the file and **keep the same file name** — a portrait image around 800×1000 (4:5) looks best, and anything 300 KB or under keeps the page fast. `img/loop-lineup.jpg` is the three-up image used for social previews.
+`img/og-loop.jpg` (1200×630) is the image shown when the link is shared on WhatsApp / Instagram / Facebook.
+
+To change a photo, replace the file and **keep the same file name**. Portrait 4:5 images around 900×1125 look best; keep each under ~150 KB so the page stays fast. Send new photos as the original files, not screenshots.
 
 > Only **your own** product photos should go here. Don't use other brands' marketing images.
 
-## 3. Get an email for every order (Netlify Forms)
+## 3. Link The Loop to Shopify checkout
+
+The "Pre-order now" button in the product card is a Shopify Buy Button. It finds your product automatically:
+
+1. In Shopify admin create the product with **"Loop" in its title** (e.g. "Strive The Loop"), price 15000, and the three colour variants.
+2. Set it to **Active** and make sure it is available on the **Online Store** sales channel.
+3. That's it — the site picks it up on the next page load. Until then (or if Shopify can't load) the button takes pre-orders on WhatsApp.
+
+If you'd rather pin a specific product, open `index.html`, find `var LOOP_SHOPIFY_PRODUCT_ID = '';` and paste the product's ID between the quotes (Shopify admin → Products → open the product → the number at the end of the URL).
+
+## 4. Get an email for every order (Netlify Forms)
 
 The site sends each pre-order to **Netlify Forms**, so you get an email + a list of
 orders in your Netlify dashboard. To switch the emails on (one time):
@@ -61,8 +73,8 @@ listed under **Forms → preorder** in the dashboard.
 
 ## 5. Other placeholders to replace
 
-- **Instagram handle** — in the footer: `https://instagram.com/your_handle_here`.
-- **OG image** — the `og:image` meta points to a placeholder URL; host a 1200×630 image and update it for nice social previews.
+- **Instagram handle** — in the footer, currently `https://instagram.com/strivewearables`.
+- **OG image** — `img/og-loop.jpg`; replace the file to change the social preview.
 
 ## 4. Optional: also save orders to Formspree (disabled by default)
 
