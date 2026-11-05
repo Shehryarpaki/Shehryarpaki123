@@ -20,13 +20,19 @@ For a Pakistani number like `0300 1234567`, drop the leading `0` and prefix `92`
 
 The hero/footer/pre-order buttons and the WhatsApp handoff all use this one value.
 
-## 2. Product photo
+## 2. Product photos
 
-The product section uses one **image file** that ships with the site: `band-black.png`.
+The product card shows **Strive The Loop** in three colourways. The photos live in `img/`:
 
-To use your **own** photo, just replace that file — **keep the same file name** (`band-black.png`) and it works instantly (a square ~1000×1000 image on a dark background looks best). No HTML edits needed.
+| Colourway | File |
+|---|---|
+| Midnight (dark navy) | `img/loop-midnight.jpg` |
+| Carbon (black) | `img/loop-carbon.jpg` |
+| Cloud (white) | `img/loop-cloud.jpg` |
 
-> Note: only **your own** product photos should go here. Don't use other brands' marketing images.
+To change a photo, replace the file and **keep the same file name** — a portrait image around 800×1000 (4:5) looks best, and anything 300 KB or under keeps the page fast. `img/loop-lineup.jpg` is the three-up image used for social previews.
+
+> Only **your own** product photos should go here. Don't use other brands' marketing images.
 
 ## 3. Get an email for every order (Netlify Forms)
 
