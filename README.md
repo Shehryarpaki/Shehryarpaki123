@@ -36,6 +36,25 @@ To change a photo, replace the file and **keep the same file name**. Portrait 4:
 
 > Only **your own** product photos should go here. Don't use other brands' marketing images.
 
+## Meta Pixel (Facebook / Instagram ads tracking)
+
+The pixel code is already on the page but switched **off** until you add your Pixel ID. In `index.html`, find
+`var META_PIXEL_ID = '';` and put the ID between the quotes (Meta Events Manager → Data sources → your pixel → the number under its name).
+
+Events the site sends once it's on:
+
+| Event | When |
+|---|---|
+| PageView | every visit |
+| ViewContent | the product card scrolls into view (once per visit) |
+| InitiateCheckout | someone taps Pre-order now (Shopify checkout or the WhatsApp form) |
+| Lead | someone sends a pre-order on WhatsApp (value = order total in PKR) |
+| Contact | someone taps "WhatsApp us" in the footer |
+
+**Purchases happen on Shopify's checkout, not on this page**, so connect the same pixel inside Shopify too:
+Shopify admin → Sales channels → **Facebook & Instagram** → Settings → Data sharing → choose this pixel. That sends Purchase events
+(and Shopify's own server-side Conversions API) from checkout.
+
 ## 3. Link The Loop to Shopify checkout
 
 The "Pre-order now" button in the product card is the same Shopify Buy Button the Arise used. It finds your product automatically and opens Shopify checkout in the same tab (so it works inside Instagram and WhatsApp's built-in browsers). For it to appear:
