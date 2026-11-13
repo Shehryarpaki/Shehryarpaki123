@@ -35,7 +35,7 @@ If a main photo is replaced, its `thumb-` and `hero-` copies must be remade from
 
 ## Buy button (Shopify)
 
-"Pre-order now" in the product card is a Shopify Buy Button. It finds the product automatically and opens Shopify
+"Order now" in the product card is a Shopify Buy Button. It finds the product automatically and opens Shopify
 checkout in the same tab (so it works inside Instagram and WhatsApp's built-in browsers). For it to appear:
 
 1. The product has **"Loop" in its title** and is **Active**.
@@ -47,12 +47,12 @@ checkout in the same tab (so it works inside Instagram and WhatsApp's built-in b
 **Check it from your phone:** open `strivewearables.com/?shopify`. A box under the button lists the products the
 site can see and says exactly why it is using Shopify or WhatsApp.
 
-If Shopify can't be reached, customers still get a working "Pre-order now" button that sends the order on WhatsApp.
+If Shopify can't be reached, customers still get a working "Order now" button that sends the order on WhatsApp.
 
 To pin a specific product, find `var LOOP_SHOPIFY_PRODUCT_ID = '';` in `index.html` and paste the product's ID between
 the quotes (Shopify admin → Products → open the product → the number at the end of the URL).
 
-Every other "Pre-order now" button on the page (header, hero, bottom bar, closing section) jumps to this buy button.
+Every other "Order now" button on the page (header, hero, bottom bar, closing section) jumps to this buy button.
 
 ## WhatsApp number
 
@@ -60,7 +60,7 @@ Every other "Pre-order now" button on the page (header, hero, bottom bar, closin
 (for `0300 1234567` write `923001234567`). The same number is also written into the `https://wa.me/…` links in the
 page, so search for `923210077442` and replace every one if it ever changes.
 
-The pre-order form (shown only when Shopify can't load), the review form and the corporate gifting form all work
+The order form (shown only when Shopify can't load), the review form and the corporate gifting form all work
 the same way: they write a WhatsApp message with what the visitor typed, and the visitor presses send. Nothing is
 stored on the site.
 
@@ -69,9 +69,9 @@ stored on the site.
 The section at `strivewearables.com/#gifting` (share that link with companies). The form asks for company, quantity
 and city, with optional colours, date, invoice and notes, and opens WhatsApp with a quote request.
 
-What it states, all confirmed by the owner: PKR 15,000 per band with bulk pricing on larger orders, company invoice
-provided, custom branding and gift packaging possible on larger orders, delivery across Pakistan. It gives no discount
-figure, no minimum order and no delivery date. Add those only when they are decided.
+What it states, all confirmed by the owner: bulk pricing on larger orders, company invoice
+provided, custom branding and gift packaging possible on larger orders, delivery across Pakistan. It shows no price, no discount
+figure, no minimum order and no delivery date (the owner quotes each order). Add those only when they are decided.
 
 ## Tracking
 
@@ -84,7 +84,7 @@ added: find `var META_PIXEL_ID = '';` in `index.html` and put the ID between the
 | Any visit | PageView | page_view |
 | The product photo scrolls into view | ViewContent | view_item |
 | Someone starts checkout (Shopify or the WhatsApp form) | InitiateCheckout | begin_checkout |
-| Someone sends a pre-order on WhatsApp | Lead (value = band total) | generate_lead |
+| Someone sends an order on WhatsApp | Lead (value = band total) | generate_lead |
 | Someone taps "WhatsApp us" in the footer | Contact | contact |
 | The gifting section scrolls into view | ViewContent | view_corporate_gifting |
 | Someone sends a corporate quote request | Lead (`corporate_gifting`) | generate_lead (`lead_source: corporate_gifting`) |
@@ -100,4 +100,5 @@ Shopify admin → Sales channels → **Facebook & Instagram** → Settings → D
 - Payment is by Bank Deposit only (no cash on delivery). Delivery is charged. Same-day delivery is Lahore only.
 - IP68 is always written as "IP68 water-resistant".
 - The product is "The Loop" (never "Strive The Loop" in visible text).
+- Buttons say "Order now". The site no longer uses the word "pre-order".
 - A review goes on the page only if a real customer sent it.
