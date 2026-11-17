@@ -152,7 +152,7 @@ var LOOP_EVENT = { content_name: 'The Loop', content_type: 'product', content_id
         id: p.id,
         node: node,
         moneyFormat: 'Rs.%7B%7Bamount%7D%7D',
-        options: {"product":{"events":{"openCheckout":checkoutEvent,"addVariantToCart":checkoutEvent},"buttonDestination":"checkout","contents":{"img":false,"title":false,"price":false,"options":true},"styles":{"product":{"max-width":"100%","margin-left":"auto","margin-right":"auto","margin-bottom":"0","text-align":"center"},"button":{"width":"100%","font-family":"Space Grotesk, sans-serif","font-weight":"600","font-size":"16px","padding-top":"16px","padding-bottom":"16px","padding-left":"30px","padding-right":"30px","color":"#0C1B33","background-color":"#F26B5B","background":"#F26B5B","border-radius":"999px",":hover":{"background":"#E25A4A"},":focus":{"background":"#E25A4A"}}},"text":{"button":"Order now","outOfStock":"Sold out"}},"cart":{"events":{"openCheckout":checkoutEvent},"popup":false,"styles":{"button":{"color":"#0C1B33","background-color":"#F26B5B","background":"#F26B5B","border-radius":"999px",":hover":{"background":"#E25A4A"},":focus":{"background":"#E25A4A"}}},"text":{"total":"Subtotal","button":"Checkout"}}}
+        options: {"product":{"events":{"openCheckout":checkoutEvent,"addVariantToCart":checkoutEvent},"buttonDestination":"checkout","contents":{"img":false,"title":false,"price":false,"options":false},"styles":{"product":{"max-width":"100%","margin-left":"auto","margin-right":"auto","margin-bottom":"0","text-align":"center"},"button":{"width":"100%","font-family":"Space Grotesk, sans-serif","font-weight":"600","font-size":"16px","padding-top":"16px","padding-bottom":"16px","padding-left":"30px","padding-right":"30px","color":"#0C1B33","background-color":"#F26B5B","background":"#F26B5B","border-radius":"999px",":hover":{"background":"#E25A4A"},":focus":{"background":"#E25A4A"}}},"text":{"button":"Order now","outOfStock":"Sold out"}},"cart":{"events":{"openCheckout":checkoutEvent},"popup":false,"styles":{"button":{"color":"#0C1B33","background-color":"#F26B5B","background":"#F26B5B","border-radius":"999px",":hover":{"background":"#E25A4A"},":focus":{"background":"#E25A4A"}}},"text":{"total":"Subtotal","button":"Checkout"}}}
       })); }).then(function (c) {
         state = 'shopify';
         component = c || null;
@@ -168,7 +168,7 @@ var LOOP_EVENT = { content_name: 'The Loop', content_type: 'product', content_id
     showFallback((e && e.message) || 'Shopify could not be reached');
   });
 
-  /* keep Shopify's colour menu in step with the site's colour swatches (Shopify's menu stays visible) */
+  /* Shopify's own colour menu is hidden: the site's colour swatches choose the colour that goes to checkout */
   window.striveSetShopifyColour = function (colour) {
     try {
       var re = COLOUR[colour];
