@@ -41,9 +41,10 @@ If a main photo is replaced, its `thumb-` and `hero-` copies must be remade from
 
 ## Order now button (Shopify)
 
-The product card has one row per colour (Carbon, Midnight, Cloud), each with its own − 0 + counter (0 to 10).
-Customers can mix colours, e.g. 3 Carbon + 4 Midnight + 2 Cloud. Tapping a colour's name or its + also switches the photos
-to that colour. "Order now" shows the total (e.g. "Order now · 9 bands · PKR 135,000"), creates one Shopify cart with a
+The product card has the three colour buttons (Carbon, Midnight, Cloud) and one − 0 + counter under them, with a small
+photo of the selected colour. The counter is for whichever colour is selected and starts at 0 (max 10 per colour).
+Customers can mix colours, e.g. tap Carbon and + three times, then Midnight and + four times. Each colour button shows a
+small bubble with how many of that colour are in the order, and "Your order: 3 Carbon, 4 Midnight" appears above the button. "Order now" shows the total (e.g. "Order now · 9 bands · PKR 135,000"), creates one Shopify cart with a
 line for each colour above 0, and opens Shopify checkout in the same tab (so it works inside Instagram and WhatsApp's
 built-in browsers). A colour that is out of stock in Shopify shows as sold out and its + is disabled. For it to work:
 
