@@ -39,14 +39,20 @@ If a main photo is replaced, its `thumb-` and `hero-` copies must be remade from
 
 > Only **your own** product photos should go here. Don't use other brands' marketing images.
 
-## Order now button (Shopify)
+## Add to cart, cart and checkout (Shopify)
 
-The product card has the three colour buttons (Carbon, Midnight, Cloud) and one − 0 + counter under them, with a small
-photo of the selected colour. The counter is for whichever colour is selected and starts at 0 (max 10 per colour).
-Customers can mix colours, e.g. tap Carbon and + three times, then Midnight and + four times. Each colour button shows a
-small bubble with how many of that colour are in the order, and "Your order: 3 Carbon, 4 Midnight" appears above the button. "Order now" shows the total (e.g. "Order now · 9 bands · PKR 135,000"), creates one Shopify cart with a
-line for each colour above 0, and opens Shopify checkout in the same tab (so it works inside Instagram and WhatsApp's
-built-in browsers). A colour that is out of stock in Shopify shows as sold out and its + is disabled. For it to work:
+The product card works like a normal online store:
+
+- Pick a colour, set the quantity (starts at 1, max 10 per colour) and tap **Add to cart**. The cart slides in from the right.
+- To mix colours, pick another colour and add it too. In the cart each colour is its own line with its own − / + and Remove.
+- **Checkout** in the cart creates one Shopify cart with a line per colour and opens Shopify checkout in the same tab
+  (so it works inside Instagram and WhatsApp's built-in browsers).
+- **Buy it now** skips the cart and checks out just the colour and quantity shown.
+- The cart icon in the header shows how many bands are in the cart, and the bottom bar on phones turns into "View cart (n)".
+  The cart is kept until the browser tab is closed.
+- A colour that is out of stock in Shopify shows as sold out and can't be added.
+
+For it to work:
 
 1. The product has **"Loop" in its title** and is **Active**.
 2. It is published to the **Buy Button** sales channel (product page → *Publishing* / *Sales channels* → tick **Buy Button**).
@@ -55,7 +61,7 @@ built-in browsers). A colour that is out of stock in Shopify shows as sold out a
 
 **Check it from your phone:** open `strivewearables.com/?shopify`. A box under the button lists what the site found.
 
-If Shopify can't be reached or checkout fails, the button opens the WhatsApp order form instead, with the same number of
+If Shopify can't be reached or checkout fails, Checkout opens the WhatsApp order form instead, with the same number of
 each colour filled in, and the WhatsApp message lists them (e.g. "Colours: 3 Carbon, 2 Cloud").
 
 To pin a specific product, find `var LOOP_SHOPIFY_PRODUCT_ID = '';` in `index.html` and paste the product's ID between
@@ -109,5 +115,5 @@ Shopify admin → Sales channels → **Facebook & Instagram** → Settings → D
 - Payment is by Bank Deposit only (no cash on delivery). Delivery is charged. Same-day delivery is Lahore only.
 - IP68 is always written as "IP68 water-resistant".
 - The product is "The Loop" (never "Strive The Loop" in visible text).
-- Buttons say "Order now". The site no longer uses the word "pre-order".
+- Buttons say "Order now" (the product card itself uses "Add to cart" and "Buy it now"). The site no longer uses the word "pre-order".
 - A review goes on the page only if a real customer sent it.
