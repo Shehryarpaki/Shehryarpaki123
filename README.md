@@ -41,10 +41,11 @@ If a main photo is replaced, its `thumb-` and `hero-` copies must be remade from
 
 ## Order now button (Shopify)
 
-"Order now" in the product card is the site's own button. It reads The Loop's colours from Shopify, then creates a
-Shopify cart with the colour picked on the swatches and the quantity picked next to the button (1 to 10), and opens
-Shopify checkout in the same tab (so it works inside Instagram and WhatsApp's built-in browsers). A colour that is out
-of stock in Shopify shows as sold out on the site. For it to work:
+The product card has one row per colour (Carbon, Midnight, Cloud), each with its own − 0 + counter (0 to 10).
+Customers can mix colours, e.g. 3 Carbon + 4 Midnight + 2 Cloud. Tapping a colour's name or its + also switches the photos
+to that colour. "Order now" shows the total (e.g. "Order now · 9 bands · PKR 135,000"), creates one Shopify cart with a
+line for each colour above 0, and opens Shopify checkout in the same tab (so it works inside Instagram and WhatsApp's
+built-in browsers). A colour that is out of stock in Shopify shows as sold out and its + is disabled. For it to work:
 
 1. The product has **"Loop" in its title** and is **Active**.
 2. It is published to the **Buy Button** sales channel (product page → *Publishing* / *Sales channels* → tick **Buy Button**).
@@ -53,8 +54,8 @@ of stock in Shopify shows as sold out on the site. For it to work:
 
 **Check it from your phone:** open `strivewearables.com/?shopify`. A box under the button lists what the site found.
 
-If Shopify can't be reached or checkout fails, the button opens the WhatsApp order form instead, with the same colour
-and quantity filled in.
+If Shopify can't be reached or checkout fails, the button opens the WhatsApp order form instead, with the same number of
+each colour filled in, and the WhatsApp message lists them (e.g. "Colours: 3 Carbon, 2 Cloud").
 
 To pin a specific product, find `var LOOP_SHOPIFY_PRODUCT_ID = '';` in `index.html` and paste the product's ID between
 the quotes (Shopify admin → Products → open the product → the number at the end of the URL).
