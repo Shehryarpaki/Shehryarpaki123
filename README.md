@@ -11,6 +11,12 @@ edit the file, push, and the site updates in about a minute.
 Hero → The Loop product card (photos, price, colours, buy button) → Reviews → Inside the band → How it works →
 What it tracks → A day with Strive → Corporate gifting → FAQ → closing call to action → footer (privacy notice).
 
+## Logo and icons
+
+`favicon.ico`, `favicon-32.png`, `favicon-48.png`, `icon-192.png`, `icon-512.png` and `apple-touch-icon.png` use the
+Instagram logo (white circle, blue-to-teal heartbeat with an arrow). Google shows `favicon-48.png` / `favicon.ico` next to
+the site in search results and refreshes it on its own schedule.
+
 ## Product photos
 
 All photos live in `img/`. The Loop has three colourways and three views:
@@ -33,26 +39,27 @@ If a main photo is replaced, its `thumb-` and `hero-` copies must be remade from
 
 > Only **your own** product photos should go here. Don't use other brands' marketing images.
 
-## Buy button (Shopify)
+## Order now button (Shopify)
 
-"Order now" in the product card is a Shopify Buy Button. It finds the product automatically and opens Shopify
-checkout in the same tab (so it works inside Instagram and WhatsApp's built-in browsers). For it to appear:
+"Order now" in the product card is the site's own button. It reads The Loop's colours from Shopify, then creates a
+Shopify cart with the colour picked on the swatches and the quantity picked next to the button (1 to 10), and opens
+Shopify checkout in the same tab (so it works inside Instagram and WhatsApp's built-in browsers). A colour that is out
+of stock in Shopify shows as sold out on the site. For it to work:
 
 1. The product has **"Loop" in its title** and is **Active**.
 2. It is published to the **Buy Button** sales channel (product page → *Publishing* / *Sales channels* → tick **Buy Button**).
    The site's Shopify key only sees products on that channel.
-3. It can be sold: either it has stock, or each variant has **"Continue selling when out of stock"** ticked
-   (that's how Shopify takes pre-orders).
+3. It has a **Colour** option with the values **Carbon**, **Midnight** and **Cloud**, each with its own stock.
 
-**Check it from your phone:** open `strivewearables.com/?shopify`. A box under the button lists the products the
-site can see and says exactly why it is using Shopify or WhatsApp.
+**Check it from your phone:** open `strivewearables.com/?shopify`. A box under the button lists what the site found.
 
-If Shopify can't be reached, customers still get a working "Order now" button that sends the order on WhatsApp.
+If Shopify can't be reached or checkout fails, the button opens the WhatsApp order form instead, with the same colour
+and quantity filled in.
 
 To pin a specific product, find `var LOOP_SHOPIFY_PRODUCT_ID = '';` in `index.html` and paste the product's ID between
 the quotes (Shopify admin → Products → open the product → the number at the end of the URL).
 
-Every other "Order now" button on the page (header, hero, bottom bar, closing section) jumps to this buy button.
+Every other "Order now" button on the page (header, hero, bottom bar, closing section) jumps to this button.
 
 ## WhatsApp number
 
