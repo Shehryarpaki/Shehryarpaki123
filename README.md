@@ -25,12 +25,15 @@ the site in search results and refreshes it on its own schedule.
 
 All photos live in `img/`. The Drift photos were made from the owner's own phone photos of the bands: the band is cut out and
 placed on a dark studio background (real product pixels, nothing redrawn), or the in-box photo is cropped.
+The one exception is `drift-azure-band.jpg`: the owner had no whole-band photo of the blue band, so it is the Glacier
+whole-band photo with only the strap and its matching frame re-coloured to the real Azure blue (taken from the photo of
+the Azure strap), the same way The Loop's colourways were made. Replace it if a real whole-band photo of the blue band is taken.
 
 | Colour | Photos |
 |---|---|
 | Onyx (black) | `drift-onyx-band.jpg` (the whole band), `drift-onyx-strap.jpg` (strap and buckle), `drift-onyx-back.jpg` (fastening) |
 | Glacier (light blue) | `drift-glacier-band.jpg` (the whole band), `drift-glacier-strap.jpg` (strap and buckle), `drift-glacier-weave.jpg` (the weave up close) |
-| Azure (blue) | `drift-azure-box.jpg` (in the box), `drift-azure-strap.jpg` (strap and buckle), `drift-azure-weave.jpg` (the weave up close) |
+| Azure (blue) | `drift-azure-band.jpg` (the whole band), `drift-azure-box.jpg` (in the box), `drift-azure-strap.jpg` (strap and buckle) |
 
 Each photo is 900×1125 (portrait 4:5). Smaller copies are made from them so phones load less:
 
