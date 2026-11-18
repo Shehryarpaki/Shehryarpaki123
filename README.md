@@ -8,8 +8,12 @@ edit the file, push, and the site updates in about a minute.
 
 ## What's on the page (top to bottom)
 
-Hero → The Loop product card (photos, price, colours, buy button) → Reviews → Inside the band → How it works →
-What it tracks → A day with Strive → Corporate gifting → FAQ → closing call to action → footer (privacy notice).
+Hero → The Drift product card (photos, price, colours, Add to cart) → Strive Arise card (the last unit) → The Loop card
+(out of stock) → Reviews → Inside the band → How it works → What it does → A day with Strive → Corporate gifting →
+FAQ → closing call to action → footer (privacy notice).
+
+**Products right now:** The Drift is the band on sale (PKR 15,000, Onyx, Glacier, Azure). The Loop is out of stock and shown as such.
+One Strive Arise (Carbon, PKR 14,000) is left and can be added to the cart.
 
 ## Logo and icons
 
@@ -19,23 +23,29 @@ the site in search results and refreshes it on its own schedule.
 
 ## Product photos
 
-All photos live in `img/`. The Loop has three colourways and three views:
+All photos live in `img/`. The Drift photos were made from the owner's own phone photos of the bands: the band is cut out and
+placed on a dark studio background (real product pixels, nothing redrawn), or the in-box photo is cropped.
 
-| | Angled view | Side view | Sensor view |
-|---|---|---|---|
-| Carbon (black) | `loop-carbon-angle.jpg` | `loop-carbon-side.jpg` | `loop-carbon-sensor.jpg` |
-| Midnight (dark navy) | `loop-midnight-angle.jpg` | `loop-midnight-side.jpg` | `loop-midnight-sensor.jpg` |
-| Cloud (white) | `loop-cloud-angle.jpg` | `loop-cloud-side.jpg` | `loop-cloud-sensor.jpg` |
+| Colour | Photos |
+|---|---|
+| Onyx (black) | `drift-onyx-band.jpg` (the whole band), `drift-onyx-strap.jpg` (strap and buckle), `drift-onyx-back.jpg` (fastening) |
+| Glacier (light blue) | `drift-glacier-band.jpg` (the whole band), `drift-glacier-strap.jpg` (strap and buckle), `drift-glacier-weave.jpg` (the weave up close) |
+| Azure (blue) | `drift-azure-box.jpg` (in the box), `drift-azure-strap.jpg` (strap and buckle), `drift-azure-weave.jpg` (the weave up close) |
 
 Each photo is 900×1125 (portrait 4:5). Smaller copies are made from them so phones load less:
 
-- `thumb-<colour>-<view>.jpg` (160×200): the small buttons under the main photo.
-- `hero-<colour>.jpg` (400×500): the three cards at the top of the page on phones, and the circles in the gifting section.
-- `og-loop-2.jpg` (1200×630): the preview shown when the link is shared on WhatsApp / Instagram / Facebook.
+- `thumb-drift-<colour>-<view>.jpg` (160×200): the small buttons under the main photo, and the cart.
+- `hero-drift-<colour>.jpg` (400×500): the three cards at the top of the page on phones, and the circles in the gifting section.
+- `drift-inside.jpg`: the sensor photo in "Inside the band".
+- `og-drift.jpg` (1200×630): the preview shown when the link is shared on WhatsApp / Instagram / Facebook.
   WhatsApp and Facebook cache previews by file name, so a new preview image needs a **new file name**
-  (`og-loop-3.jpg`, …) and the two `og:image` / `twitter:image` tags in `index.html` updated to match.
+  and the two `og:image` / `twitter:image` tags in `index.html` updated to match.
+- `arise.jpg`, `thumb-arise.jpg`: the Strive Arise card and cart line.
+- `social/`: the Instagram post images (Instagram loads them from the site when a post is published).
+- `loop-*`, `hero-carbon.jpg` etc.: The Loop's photos, kept for when it is back in stock.
 
-If a main photo is replaced, its `thumb-` and `hero-` copies must be remade from it.
+The gallery lists which photos each colour has in `const GALLERY = {…}` in `index.html`; a colour can have a different
+number of photos. If a main photo is replaced, its `thumb-` and `hero-` copies must be remade from it.
 
 > Only **your own** product photos should go here. Don't use other brands' marketing images.
 
@@ -45,29 +55,33 @@ The product card works like a normal online store:
 
 - Pick a colour, set the quantity (starts at 1, max 10 per colour) and tap **Add to cart**. The cart slides in from the right.
 - To mix colours, pick another colour and add it too. In the cart each colour is its own line with its own − / + and Remove.
-- **Checkout** in the cart creates one Shopify cart with a line per colour and opens Shopify checkout in the same tab
+- The **Strive Arise** card under the band has its own Add to cart (one unit, PKR 14,000). It goes into the same cart.
+- **Checkout** in the cart creates one Shopify cart with a line per item and opens Shopify checkout in the same tab
   (so it works inside Instagram and WhatsApp's built-in browsers).
 - **Buy it now** skips the cart and checks out just the colour and quantity shown.
 - The cart icon in the header shows how many bands are in the cart, and the bottom bar on phones turns into "View cart (n)".
   The cart is kept until the browser tab is closed.
-- A colour that is out of stock in Shopify shows as sold out and can't be added.
+- Anything that is out of stock in Shopify shows as sold out and can't be added. When the last Arise sells, its card
+  switches to "Sold out" by itself.
 
-For it to work:
+For it to work, in Shopify:
 
-1. The product has **"Loop" in its title** and is **Active**.
-2. It is published to the **Buy Button** sales channel (product page → *Publishing* / *Sales channels* → tick **Buy Button**).
+1. The band's product has **"Drift" in its title** and is **Active**. The Arise product has "Arise" in its title.
+2. Both are published to the **Buy Button** sales channel (product page → *Publishing* / *Sales channels* → tick **Buy Button**).
    The site's Shopify key only sees products on that channel.
-3. It has a **Colour** option with the values **Carbon**, **Midnight** and **Cloud**, each with its own stock.
+3. The band has a **Colour** option with the values ****Onyx**, **Glacier**, **Azure****, each with its own stock.
 
 **Check it from your phone:** open `strivewearables.com/?shopify`. A box under the button lists what the site found.
 
-If Shopify can't be reached or checkout fails, Checkout opens the WhatsApp order form instead, with the same number of
-each colour filled in, and the WhatsApp message lists them (e.g. "Colours: 3 Carbon, 2 Cloud").
+If Shopify can't be reached or checkout fails, Checkout opens the WhatsApp order form instead, with the same items
+filled in, and the WhatsApp message lists them with the total.
 
-To pin a specific product, find `var LOOP_SHOPIFY_PRODUCT_ID = '';` in `index.html` and paste the product's ID between
-the quotes (Shopify admin → Products → open the product → the number at the end of the URL).
+To pin the band to a specific product, find `var BAND_SHOPIFY_PRODUCT_ID = '';` in `index.html` and paste the product's ID
+between the quotes (Shopify admin → Products → open the product → the number at the end of the URL).
 
-Every other "Order now" button on the page (header, hero, bottom bar, closing section) jumps to this button.
+Every other "Order now" button on the page (header, hero, bottom bar, closing section) jumps to this card.
+
+**When The Loop is back:** restock it in Shopify, then ask for the site to be switched back (the Loop page is in git history).
 
 ## WhatsApp number
 
@@ -113,7 +127,11 @@ Shopify admin → Sales channels → **Facebook & Instagram** → Settings → D
 
 - Only claim what is true and confirmed. No invented reviews, press, awards, guarantees, delivery dates or discounts.
 - Payment is by Bank Deposit only (no cash on delivery). Delivery is charged. Same-day delivery is Lahore only.
-- IP68 is always written as "IP68 water-resistant".
-- The product is "The Loop" (never "Strive The Loop" in visible text).
+- IP68 is always written as "IP68 water-resistant" (only where it is confirmed for that band).
+- Product names: "The Drift", "The Loop", "Strive Arise".
 - Buttons say "Order now" (the product card itself uses "Add to cart" and "Buy it now"). The site no longer uses the word "pre-order".
+- The Drift claims are limited to what is printed on its box or visible on the band: heart rate monitoring, sleep monitoring,
+  100+ sports modes, no screen, woven strap with hook-and-loop fastening and a metal buckle. Battery life, water
+  resistance, blood oxygen, call alerts, step counting and phone compatibility are **not** stated until the owner confirms them.
+- Never compare the band to, or name, another brand's product.
 - A review goes on the page only if a real customer sent it.
