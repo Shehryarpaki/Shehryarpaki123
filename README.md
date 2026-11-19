@@ -23,18 +23,20 @@ the site in search results and refreshes it on its own schedule.
 
 ## Product photos
 
-All photos live in `img/`. Each colour of The Drift has four:
+All photos live in `img/`. Each colour of The Drift has three:
 
 | Colour | Photos |
 |---|---|
-| Onyx (black) | `drift-onyx-studio.jpg` (studio view), `drift-onyx-front.jpg` (front view), `drift-onyx-band.jpg` (sensor side (real photo)), `drift-onyx-back.jpg` (fastening (real photo)) |
-| Glacier (whitish blue) | `drift-glacier-studio.jpg` (studio view), `drift-glacier-front.jpg` (front view), `drift-glacier-band.jpg` (sensor side (real photo)), `drift-glacier-strap.jpg` (strap and buckle (real photo)) |
-| Azure (blue) | `drift-azure-studio.jpg` (studio view), `drift-azure-front.jpg` (front view), `drift-azure-band.jpg` (sensor side), `drift-azure-box.jpg` (in the box (real photo)) |
+| Onyx (black) | `drift-onyx-studio.jpg` (studio view), `drift-onyx-sensor.jpg` (sensor close-up), `drift-onyx-band.jpg` (sensor side (real photo)) |
+| Glacier (whitish blue) | `drift-glacier-studio.jpg` (studio view), `drift-glacier-sensor.jpg` (sensor close-up), `drift-glacier-band.jpg` (sensor side (real photo)) |
+| Azure (blue) | `drift-azure-studio.jpg` (studio view), `drift-azure-sensor.jpg` (sensor close-up), `drift-azure-band.jpg` (sensor side) |
 
-- **Studio and front views** are still frames from the owner's own studio video of the three bands (dark background).
+- **Studio views** are still frames from the owner's own studio video of the three bands (dark background).
   The blue band in that video is navy, so in these stills (and in the Reel) it is colour-matched to the real Azure strap.
-- **Real photos** are the owner's phone photos: the band is cut out and placed on a dark background (nothing redrawn),
-  or the in-box photo is cropped. They show the real sensor, strap, buckle and fastening.
+- **Sensor close-ups** come from one picture the supplier sent of the blue band (light background). The Azure one is that
+  picture, turned to fit the portrait frame. Onyx and Glacier are the same picture with the strap and pod housing
+  re-coloured; the black glass, sensor windows and metal buckle are untouched and the green status light is redrawn.
+- **Real photos** are the owner's phone photos: the band is cut out and placed on a dark background (nothing redrawn).
 - `drift-azure-band.jpg` is the exception: there is no whole-band photo of the blue band, so it is the Glacier photo with
   the strap re-coloured to the real Azure blue. Replace it if a real photo of the blue band's sensor side is taken.
 
@@ -142,7 +144,8 @@ Shopify admin → Sales channels → **Facebook & Instagram** → Settings → D
 - Product names: "The Drift", "The Loop", "Strive Arise".
 - Buttons say "Order now" (the product card itself uses "Add to cart" and "Buy it now"). The site no longer uses the word "pre-order".
 - The Drift claims are limited to what is printed on its box or visible on the band: heart rate monitoring, sleep monitoring,
-  100+ sports modes, no screen, woven strap with hook-and-loop fastening and a metal buckle. Battery life, water
-  resistance, blood oxygen, call alerts, step counting and phone compatibility are **not** stated until the owner confirms them.
+  100+ sports modes, no screen, woven strap with hook-and-loop fastening and a metal buckle, plus "works with iOS and
+  Android" (confirmed by the owner). Battery life, water resistance, blood oxygen, call alerts and step counting are
+  **not** stated until the owner confirms them.
 - Never compare the band to, or name, another brand's product.
 - A review goes on the page only if a real customer sent it.
