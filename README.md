@@ -23,22 +23,20 @@ the site in search results and refreshes it on its own schedule.
 
 ## Product photos
 
-All photos live in `img/`. Each colour of The Drift has three:
+All photos live in `img/`. Each colour of The Drift has two:
 
 | Colour | Photos |
 |---|---|
-| Onyx (black) | `drift-onyx-studio.jpg` (studio view), `drift-onyx-sensor.jpg` (sensor close-up), `drift-onyx-band.jpg` (sensor side (real photo)) |
-| Glacier (whitish blue) | `drift-glacier-studio.jpg` (studio view), `drift-glacier-sensor.jpg` (sensor close-up), `drift-glacier-band.jpg` (sensor side (real photo)) |
-| Azure (blue) | `drift-azure-studio.jpg` (studio view), `drift-azure-sensor.jpg` (sensor close-up), `drift-azure-band.jpg` (sensor side) |
+| Onyx (black) | `drift-onyx-studio.jpg` (studio view), `drift-onyx-sensor.jpg` (sensor close-up) |
+| Glacier (whitish blue) | `drift-glacier-studio.jpg` (studio view), `drift-glacier-sensor.jpg` (sensor close-up) |
+| Azure (blue) | `drift-azure-studio.jpg` (studio view), `drift-azure-sensor.jpg` (sensor close-up) |
 
 - **Studio views** are still frames from the owner's own studio video of the three bands (dark background).
   The blue band in that video is navy, so in these stills (and in the Reel) it is colour-matched to the real Azure strap.
 - **Sensor close-ups** come from one picture the supplier sent of the blue band (light background). The Azure one is that
   picture, turned to fit the portrait frame. Onyx and Glacier are the same picture with the strap and pod housing
   re-coloured; the black glass, sensor windows and metal buckle are untouched and the green status light is redrawn.
-- **Real photos** are the owner's phone photos: the band is cut out and placed on a dark background (nothing redrawn).
-- `drift-azure-band.jpg` is the exception: there is no whole-band photo of the blue band, so it is the Glacier photo with
-  the strap re-coloured to the real Azure blue. Replace it if a real photo of the blue band's sensor side is taken.
+- The owner's phone photos of the whole band are no longer in the product gallery (removed at the owner's request).
 
 Each photo is 900×1125 (portrait 4:5). Smaller copies are made from them so phones load less:
 
