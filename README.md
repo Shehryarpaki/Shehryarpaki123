@@ -23,64 +23,73 @@ the site in search results and refreshes it on its own schedule.
 
 ## Product photos
 
-All photos live in `img/`. The Drift photos were made from the owner's own phone photos of the bands: the band is cut out and
-placed on a dark studio background (real product pixels, nothing redrawn), or the in-box photo is cropped.
-The one exception is `drift-azure-band.jpg`: the owner had no whole-band photo of the blue band, so it is the Glacier
-whole-band photo with only the strap and its matching frame re-coloured to the real Azure blue (taken from the photo of
-the Azure strap), the same way The Loop's colourways were made. Replace it if a real whole-band photo of the blue band is taken.
+All photos live in `img/`. Each colour of The Drift has four:
 
 | Colour | Photos |
 |---|---|
-| Onyx (black) | `drift-onyx-band.jpg` (the whole band), `drift-onyx-strap.jpg` (strap and buckle), `drift-onyx-back.jpg` (fastening) |
-| Glacier (light blue) | `drift-glacier-band.jpg` (the whole band), `drift-glacier-strap.jpg` (strap and buckle), `drift-glacier-weave.jpg` (the weave up close) |
-| Azure (blue) | `drift-azure-band.jpg` (the whole band), `drift-azure-box.jpg` (in the box), `drift-azure-strap.jpg` (strap and buckle) |
+| Onyx (black) | `drift-onyx-studio.jpg` (studio view), `drift-onyx-front.jpg` (front view), `drift-onyx-band.jpg` (sensor side (real photo)), `drift-onyx-back.jpg` (fastening (real photo)) |
+| Glacier (whitish blue) | `drift-glacier-studio.jpg` (studio view), `drift-glacier-front.jpg` (front view), `drift-glacier-band.jpg` (sensor side (real photo)), `drift-glacier-strap.jpg` (strap and buckle (real photo)) |
+| Azure (blue) | `drift-azure-studio.jpg` (studio view), `drift-azure-front.jpg` (front view), `drift-azure-band.jpg` (sensor side), `drift-azure-box.jpg` (in the box (real photo)) |
+
+- **Studio and front views** are still frames from the owner's own studio video of the three bands (dark background).
+  The blue band in that video is navy, so in these stills (and in the Reel) it is colour-matched to the real Azure strap.
+- **Real photos** are the owner's phone photos: the band is cut out and placed on a dark background (nothing redrawn),
+  or the in-box photo is cropped. They show the real sensor, strap, buckle and fastening.
+- `drift-azure-band.jpg` is the exception: there is no whole-band photo of the blue band, so it is the Glacier photo with
+  the strap re-coloured to the real Azure blue. Replace it if a real photo of the blue band's sensor side is taken.
 
 Each photo is 900×1125 (portrait 4:5). Smaller copies are made from them so phones load less:
 
 - `thumb-drift-<colour>-<view>.jpg` (160×200): the small buttons under the main photo, and the cart.
 - `hero-drift-<colour>.jpg` (400×500): the three cards at the top of the page on phones, and the circles in the gifting section.
-- `drift-inside.jpg`: the sensor photo in "Inside the band".
+- `drift-inside.jpg`: the real sensor photo in "Inside the band".
 - `og-drift.jpg` (1200×630): the preview shown when the link is shared on WhatsApp / Instagram / Facebook.
   WhatsApp and Facebook cache previews by file name, so a new preview image needs a **new file name**
   and the two `og:image` / `twitter:image` tags in `index.html` updated to match.
 - `arise.jpg`, `thumb-arise.jpg`: the Strive Arise card and cart line.
-- `social/`: the Instagram post images (Instagram loads them from the site when a post is published).
+- `social/`: the Instagram post images and the Reel (Instagram loads them from the site when a post is published).
 - `loop-*`, `hero-carbon.jpg` etc.: The Loop's photos, kept for when it is back in stock.
 
-The gallery lists which photos each colour has in `const GALLERY = {…}` in `index.html`; a colour can have a different
-number of photos. If a main photo is replaced, its `thumb-` and `hero-` copies must be remade from it.
+The gallery lists which photos each colour has in `const GALLERY = {…}` in `index.html`. If a main photo is replaced,
+its `thumb-` and `hero-` copies must be remade from it.
 
-> Only **your own** product photos should go here. Don't use other brands' marketing images.
+> Only **your own** product photos and video should go here. Don't use other brands' marketing images
+> (for example photos of a similar-looking band from another company's store).
 
 ## Add to cart, cart and checkout (Shopify)
 
-The product card works like a normal online store:
+Every order goes through **Shopify checkout**. There is no WhatsApp order form.
 
 - Pick a colour, set the quantity (starts at 1, max 10 per colour) and tap **Add to cart**. The cart slides in from the right.
 - To mix colours, pick another colour and add it too. In the cart each colour is its own line with its own − / + and Remove.
 - The **Strive Arise** card under the band has its own Add to cart (one unit, PKR 14,000). It goes into the same cart.
-- **Checkout** in the cart creates one Shopify cart with a line per item and opens Shopify checkout in the same tab
+- **Checkout** in the cart opens Shopify checkout in the same tab with a line per item
   (so it works inside Instagram and WhatsApp's built-in browsers).
 - **Buy it now** skips the cart and checks out just the colour and quantity shown.
 - The cart icon in the header shows how many bands are in the cart, and the bottom bar on phones turns into "View cart (n)".
   The cart is kept until the browser tab is closed.
-- Anything that is out of stock in Shopify shows as sold out and can't be added. When the last Arise sells, its card
-  switches to "Sold out" by itself.
+
+How checkout reaches Shopify (two ways, tried in this order):
+
+1. The page asks Shopify for a cart (Storefront API, Buy Button channel) and opens its checkout link.
+2. If that lookup is slow, fails or returns an error, the page opens a **Shopify cart link** instead:
+   `https://strivewearables.myshopify.com/cart/<variant number>:<quantity>,…`, which also lands on Shopify checkout.
+   The variant numbers are the `vid` values in `var ITEMS = {…}` in `index.html`
+   (Shopify admin → Products → open the product → click a variant → the number at the end of the URL).
+   **If a product or colour is recreated in Shopify, update its `vid`.**
+
+Stock: when the lookup works, anything out of stock in Shopify shows as sold out and can't be added, and the last Arise
+switches to "Sold out" by itself once it sells.
 
 For it to work, in Shopify:
 
 1. The band's product has **"Drift" in its title** and is **Active**. The Arise product has "Arise" in its title.
-2. Both are published to the **Buy Button** sales channel (product page → *Publishing* / *Sales channels* → tick **Buy Button**).
-   The site's Shopify key only sees products on that channel.
-3. The band has a **Colour** option with the values ****Onyx**, **Glacier**, **Azure****, each with its own stock.
+2. Both are published to the **Buy Button** channel (for way 1) and the **Online Store** channel (for way 2),
+   and the online store is **not** password-protected (Online Store → Preferences).
+3. The band has a **Colour** option with the values **Onyx**, **Glacier** and **Azure**, each with its own stock.
 
-**Check it from your phone:** open `strivewearables.com/?shopify`. A box under the button lists what the site found.
-
-If Shopify can't be reached or checkout fails, Checkout opens the WhatsApp order form instead, with the same items
-filled in, and the WhatsApp message lists them with the total.
-
-To pin the band to a specific product, find `var BAND_SHOPIFY_PRODUCT_ID = '';` in `index.html` and paste the product's ID
-between the quotes (Shopify admin → Products → open the product → the number at the end of the URL).
+**Check it from your phone:** open `strivewearables.com/?shopify`. A box under the button lists what the site found
+and which of the two ways checkout used.
 
 Every other "Order now" button on the page (header, hero, bottom bar, closing section) jumps to this card.
 
@@ -92,8 +101,7 @@ Every other "Order now" button on the page (header, hero, bottom bar, closing se
 (for `0300 1234567` write `923001234567`). The same number is also written into the `https://wa.me/…` links in the
 page, so search for `923210077442` and replace every one if it ever changes.
 
-The order form (shown only when Shopify can't load), the review form and the corporate gifting form all work
-the same way: they write a WhatsApp message with what the visitor typed, and the visitor presses send. Nothing is
+The review form and the corporate gifting form work the same way: they write a WhatsApp message with what the visitor typed, and the visitor presses send. Nothing is
 stored on the site.
 
 ## Corporate gifting
@@ -115,8 +123,8 @@ added: find `var META_PIXEL_ID = '';` in `index.html` and put the ID between the
 |---|---|---|
 | Any visit | PageView | page_view |
 | The product photo scrolls into view | ViewContent | view_item |
-| Someone starts checkout (Shopify or the WhatsApp form) | InitiateCheckout | begin_checkout |
-| Someone sends an order on WhatsApp | Lead (value = band total) | generate_lead |
+| Someone adds a band to the cart | AddToCart | add_to_cart |
+| Someone starts checkout | InitiateCheckout | begin_checkout |
 | Someone taps "WhatsApp us" in the footer | Contact | contact |
 | The gifting section scrolls into view | ViewContent | view_corporate_gifting |
 | Someone sends a corporate quote request | Lead (`corporate_gifting`) | generate_lead (`lead_source: corporate_gifting`) |
