@@ -17,9 +17,24 @@ One Strive Arise (Carbon, PKR 14,000) is left and can be added to the cart.
 
 ## Logo and icons
 
-`favicon.ico`, `favicon-32.png`, `favicon-48.png`, `icon-192.png`, `icon-512.png` and `apple-touch-icon.png` use the
-Instagram logo (white circle, blue-to-teal heartbeat with an arrow). Google shows `favicon-48.png` / `favicon.ico` next to
-the site in search results and refreshes it on its own schedule.
+The logo is the one on the brand's Instagram and Facebook profile picture: a white circle with a blue-to-teal
+heartbeat line that ends in a small rocket-shaped arrow. It was rebuilt as clean vectors from that picture (shape
+fitted to it, colours sampled from it), so it stays sharp at every size. Do not use the older dark rounded square with
+a blue-cyan-green line; that is not the brand logo.
+
+| File | Use |
+|---|---|
+| `img/brand/strive-badge.svg`, `img/brand/strive-badge-1080.png` | Full logo: white circle with the mark, same proportions as the profile picture |
+| `img/brand/strive-mark.svg`, `img/brand/strive-mark-1080.png` | The mark alone, transparent background |
+| `favicon.svg`, `favicon.ico`, `favicon-16/32/48/96.png`, `icon-192.png`, `icon-512.png` | Browser tab and Google result icons (mark slightly enlarged so it reads at 16-48 px) |
+| `apple-touch-icon.png` | iPhone home-screen icon (white square; iOS rounds the corners) |
+| `strive-logo-512.png` | The logo Google reads from the page's Organization data |
+| `site.webmanifest` | Name, colours and icons for Android / "Add to home screen" |
+
+The header and footer use the white-circle logo (mark slightly enlarged at that small size). The page also tells
+Google the brand's name, website and logo (Organization and WebSite data in the `ld+json` block). Google only picks up
+a new icon or logo when it next crawls the home page, which can take days to weeks; "Request indexing" for
+`https://strivewearables.com/` in Google Search Console speeds that up.
 
 ## Product photos
 
