@@ -112,9 +112,9 @@ Every other "Order now" button on the page (header, hero, bottom bar, closing se
 
 ## WhatsApp number
 
-`const PHONE = "923210077442";` near the start of the last `<script>` block. International format, digits only
+`const PHONE = "923144840163";` near the start of the last `<script>` block. International format, digits only
 (for `0300 1234567` write `923001234567`). The same number is also written into the `https://wa.me/…` links in the
-page, so search for `923210077442` and replace every one if it ever changes.
+page, so search for `923144840163` and replace every one if it ever changes.
 
 The review form and the corporate gifting form work the same way: they write a WhatsApp message with what the visitor typed, and the visitor presses send. Nothing is
 stored on the site.
