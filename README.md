@@ -82,6 +82,9 @@ Every order goes through **Shopify checkout**. There is no WhatsApp order form.
   (so it works inside Instagram and WhatsApp's built-in browsers).
 - **Buy it now** skips the cart and checks out just the colour and quantity shown.
 - The cart icon in the header shows how many bands are in the cart, and the bottom bar on phones turns into "View cart (n)".
+- **Chat on WhatsApp** (under "Buy it now", in the hero as "Ask on WhatsApp", and the round button in the bottom bar on phones)
+  opens a WhatsApp chat with a short message already typed. The one in the buy box names the colour that is selected.
+  These are chat links only: ordering still happens in Shopify checkout.
   The cart is kept until the browser tab is closed.
 
 How checkout reaches Shopify (two ways, tried in this order):
@@ -141,6 +144,7 @@ added: find `var META_PIXEL_ID = '';` in `index.html` and put the ID between the
 | Someone adds a band to the cart | AddToCart | add_to_cart |
 | Someone starts checkout | InitiateCheckout | begin_checkout |
 | Someone taps "WhatsApp us" in the footer | Contact | contact |
+| Someone taps "Chat on WhatsApp" in the buy box | Contact | contact |
 | The gifting section scrolls into view | ViewContent | view_corporate_gifting |
 | Someone sends a corporate quote request | Lead (`corporate_gifting`) | generate_lead (`lead_source: corporate_gifting`) |
 
