@@ -156,7 +156,7 @@ Shopify admin → Sales channels → **Facebook & Instagram** → Settings → D
 ## Rules for the copy
 
 - Only claim what is true and confirmed. No invented reviews, press, awards, guarantees, delivery dates or discounts.
-- Payment is by Bank Deposit only (no cash on delivery). Delivery is charged. Same-day delivery is Lahore only.
+- Payment is by Bank Deposit only (no cash on delivery). Delivery is free across Pakistan. Same-day delivery is Lahore only.
 - IP68 is always written as "IP68 water-resistant" (only where it is confirmed for that band).
 - Product names: "The Drift", "The Loop", "Strive Arise".
 - Buttons say "Order now" (the product card itself uses "Add to cart" and "Buy it now"). The site no longer uses the word "pre-order".
